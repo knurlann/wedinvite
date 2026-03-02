@@ -273,54 +273,118 @@ export default function InvitePage() {
         </motion.div>
       </section>
 
-      {/* ══════ САУАЛНАМА / RSVP ══════ */}
-      <section className="bg-white px-6 pt-8 pb-6">
-        <motion.div {...fade()} className="text-center mb-6">
-          <p className="font-script text-[2.2rem] text-[#aa915d]">Сауалнама</p>
-          <p className="mt-2 font-heading text-[#1a1a1a] text-[12px] uppercase tracking-[0.08em] leading-relaxed">
-            Тойға қатысуыңызды
-            <br />растауыңызды сұраймыз:
+      {/* ══════ САУАЛНАМА / RSVP (1:1 design-14) ══════ */}
+      <section className="bg-white px-6 pt-10 pb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 3, ease: "easeOut" }}
+          className="text-center mb-8"
+        >
+          <p className="font-script text-[2.2rem] text-[#826547]">Сауалнама</p>
+          <p className="mt-3 font-heading text-[#826547] text-[12px] leading-relaxed text-center max-w-[290px] mx-auto">
+            тойға қатысуыңызды
+            <br />
+            растауыңызды сұраймыз:
           </p>
         </motion.div>
 
         {formStatus === "success" ? (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-6">
-            <p className="font-script text-[2rem] text-[#aa915d] mb-2">Рахмет!</p>
-            <p className="font-body text-[13px] text-[#1a1a1a]/60">Жауабыңыз қабылданды. Сізді күтеміз!</p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-center py-8"
+          >
+            <p className="font-script text-[2rem] text-[#826547] mb-2">Рахмет!</p>
+            <p className="font-body text-[13px] text-[#1a1a1a]/70">Жауабыңыз қабылданды. Сізді күтеміз!</p>
           </motion.div>
         ) : (
-          <motion.form {...fade(0.2)} onSubmit={handleSubmit} className="flex flex-col gap-3">
-            <input type="text" value={name} onChange={e => setName(e.target.value)} required placeholder="Аты-Жөніңіз"
-              className="w-full border border-gray-300 rounded bg-white px-3 py-2.5 font-body text-[13px] text-[#1a1a1a] placeholder:text-gray-400 outline-none focus:border-[#aa915d]" />
+          <motion.form
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 3, delay: 0.2, ease: "easeOut" }}
+            onSubmit={handleSubmit}
+            className="mx-auto max-w-[313px] flex flex-col gap-5"
+          >
             <div>
-              <p className="mb-2 font-heading text-[10px] text-[#1a1a1a]/50 uppercase tracking-wide">
+              <label className="block font-heading text-[#1a1a1a] text-[11px] uppercase tracking-[0.1em] mb-2">
+                Аты-Жөніңіз
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                required
+                placeholder="Есімдері"
+                className="w-full bg-transparent border-0 border-b-2 border-[#d4c4a8] px-0 py-2.5 font-body text-[14px] text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 outline-none focus:border-[#826547] transition-colors"
+              />
+            </div>
+
+            <div>
+              <p className="font-heading text-[#1a1a1a] text-[11px] uppercase tracking-[0.08em] mb-3">
                 Жұбайыңызбен келсеңіз, есімдеріңізді бірге жаза кетіңіз
               </p>
-              {RSVP_OPTIONS.map(opt => (
-                <label key={opt.value} className="flex items-center gap-2.5 py-1.5 cursor-pointer">
-                  <input type="radio" name="rsvp" value={opt.value} checked={answer === opt.value}
-                    onChange={e => setAnswer(e.target.value)} className="sr-only" />
-                  <span className={`flex h-4 w-4 items-center justify-center rounded-full border-2 transition-colors ${
-                    answer === opt.value ? "border-[#aa915d] bg-[#aa915d]" : "border-gray-300"
-                  }`}>
-                    {answer === opt.value && <span className="block h-1.5 w-1.5 rounded-full bg-white" />}
-                  </span>
-                  <span className="font-heading text-[12px] text-[#1a1a1a] uppercase tracking-wide">{opt.label}</span>
-                </label>
-              ))}
+              <div className="flex flex-col gap-2">
+                {RSVP_OPTIONS.map(opt => (
+                  <label
+                    key={opt.value}
+                    className="flex items-center gap-3 py-2 cursor-pointer border-b border-[#eee] last:border-0"
+                  >
+                    <input
+                      type="radio"
+                      name="rsvp"
+                      value={opt.value}
+                      checked={answer === opt.value}
+                      onChange={e => setAnswer(e.target.value)}
+                      className="sr-only"
+                    />
+                    <span
+                      className={`flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
+                        answer === opt.value ? "border-[#826547] bg-[#826547]" : "border-[#c4b8a8]"
+                      }`}
+                    >
+                      {answer === opt.value && <span className="block h-2 w-2 rounded-full bg-white" />}
+                    </span>
+                    <span className="font-body text-[13px] text-[#1a1a1a]">{opt.label}</span>
+                  </label>
+                ))}
+              </div>
             </div>
+
             {answer && answer !== "not_coming" && (
-              <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} transition={{ duration: 0.3 }}>
-                <p className="mb-1 font-heading text-[10px] text-[#1a1a1a]/50 uppercase">Неше адам болып келесіздер?</p>
-                <input type="number" min="1" max="20" value={guestCount} onChange={e => setGuestCount(e.target.value)}
-                  className="w-full border border-gray-300 rounded bg-white px-3 py-2.5 font-body text-[13px] text-[#1a1a1a] outline-none focus:border-[#aa915d]" />
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                transition={{ duration: 0.35 }}
+              >
+                <label className="block font-heading text-[#1a1a1a] text-[11px] uppercase tracking-[0.08em] mb-2">
+                  Неше адам болып келесіздер?
+                </label>
+                <input
+                  type="number"
+                  min={1}
+                  max={20}
+                  value={guestCount}
+                  onChange={e => setGuestCount(e.target.value)}
+                  className="w-full bg-transparent border-0 border-b-2 border-[#d4c4a8] px-0 py-2.5 font-body text-[14px] text-[#1a1a1a] outline-none focus:border-[#826547] transition-colors"
+                />
               </motion.div>
             )}
-            <button type="submit" disabled={formStatus === "loading" || !name || !answer}
-              className="mt-1 w-full rounded bg-[#aa915d] py-2.5 font-heading text-[12px] tracking-[0.15em] uppercase text-white active:opacity-70 disabled:opacity-30">
+
+            <button
+              type="submit"
+              disabled={formStatus === "loading" || !name || !answer}
+              className="mt-2 w-full rounded-full bg-[#826547] py-3 font-heading text-[11px] tracking-[0.2em] uppercase text-white transition-opacity hover:opacity-90 active:opacity-80 disabled:opacity-40 disabled:cursor-not-allowed"
+            >
               {formStatus === "loading" ? "Жіберілуде..." : "Жауапты жіберу"}
             </button>
-            {formStatus === "error" && <p className="text-center font-heading text-[10px] text-red-500">Қате болды. Қайтадан көріңіз.</p>}
+
+            {formStatus === "error" && (
+              <p className="text-center font-body text-[12px] text-red-500">Қате пайда болды. Қайтадан көріңіз.</p>
+            )}
           </motion.form>
         )}
       </section>
@@ -332,10 +396,6 @@ export default function InvitePage() {
             Қуанышымызға
             <br />ортақ болыңыздар!
           </p>
-
-          <div className="flex justify-center mt-6">
-            <Image src="/img/decor-branch.svg" alt="" width={120} height={60} />
-          </div>
         </motion.div>
       </section>
     </main>
