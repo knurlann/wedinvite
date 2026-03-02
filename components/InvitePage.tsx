@@ -180,9 +180,9 @@ export default function InvitePage() {
       </section>
 
       {/* ══════ CALENDAR ══════ */}
-      <section className="bg-white px-6 pt-4 pb-6">
-        <motion.div {...fade()} className="mx-auto max-w-[320px]">
-          <div className="flex justify-between items-baseline mb-3 px-1">
+      <section className="bg-white px-6 pt-4 pb-6 flex flex-col items-center">
+        <motion.div {...fade()} className="w-full max-w-[280px]">
+          <div className="text-center mb-3">
             <p className="font-heading text-[#1a1a1a] text-[22px] font-bold uppercase tracking-[0.1em]">{cal.name}</p>
             <p className="font-heading text-[#1a1a1a] text-[22px] font-bold tracking-[0.05em]">{cal.y}</p>
           </div>
@@ -232,54 +232,44 @@ export default function InvitePage() {
       </section>
 
       {/* ══════ ТОЙ БАҒДАРЛАМАСЫ (Timeline) ══════ */}
-      <section className="bg-white px-4 pt-2 pb-8">
-        <motion.p {...fade()} className="text-center font-script text-[2.2rem] text-[#aa915d] mb-6">
+      <section className="bg-white px-6 pt-2 pb-8">
+        <motion.p {...fade()} className="text-center font-script text-[2.2rem] text-[#aa915d] mb-8">
           Той бағдарламасы:
         </motion.p>
 
-        <motion.div {...fade(0.1)} className="relative max-w-[340px] mx-auto">
+        <motion.div {...fade(0.1)} className="relative mx-auto max-w-[300px]">
           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#aa915d]/20 -translate-x-1/2" />
 
           {[
-            { time: "16:00", text: "Қонақтардың\nжиналуы", icon: "📍", side: "left" },
-            { time: "16:30", text: "Фотосессия,\nфуршет", icon: "📸", side: "right" },
-            { time: "17:00", text: "Тойдың басталуы,\nбеташар", icon: "💍", side: "left" },
-            { time: "17:30", text: "Құдалардың\nқарсы алу", icon: "💐", side: "right" },
-            { time: "21:00", text: "Жас жұбайлардың\nвальсі", icon: "🎶", side: "left" },
-            { time: "22:00", text: "Тойдың торты", icon: "🎂", side: "right" },
+            { time: "16:00", text: "Қонақтардың жиналуы", side: "left" as const },
+            { time: "16:30", text: "Фотосессия, фуршет", side: "right" as const },
+            { time: "17:00", text: "Тойдың басталуы, беташар", side: "left" as const },
+            { time: "17:30", text: "Құдалардың қарсы алу", side: "right" as const },
+            { time: "21:00", text: "Жас жұбайлардың вальсі", side: "left" as const },
+            { time: "22:00", text: "Тойдың торты", side: "right" as const },
           ].map((item, i) => (
-            <motion.div
-              key={i}
-              {...fade(i * 0.1)}
-              className={`relative flex items-start mb-6 ${item.side === "left" ? "flex-row" : "flex-row-reverse"}`}
-            >
-              <div className={`w-[45%] ${item.side === "left" ? "text-right pr-5" : "text-left pl-5"}`}>
-                <p className="font-heading text-[#aa915d] text-[16px] font-bold">{item.time}</p>
-                <p className="font-heading text-[#1a1a1a] text-[11px] uppercase tracking-[0.08em] leading-relaxed whitespace-pre-line mt-0.5">
-                  {item.text}
-                </p>
+            <div key={i} className="relative flex items-center mb-5">
+              <div className={`w-[46%] ${item.side === "left" ? "text-right pr-4" : ""}`}>
+                {item.side === "left" && (
+                  <>
+                    <p className="font-heading text-[#aa915d] text-[15px] font-bold">{item.time}</p>
+                    <p className="font-heading text-[#1a1a1a] text-[10px] uppercase tracking-[0.06em] leading-snug mt-0.5">{item.text}</p>
+                  </>
+                )}
               </div>
-              <div className="w-[10%] flex justify-center relative z-10">
-                <span className="w-3 h-3 rounded-full bg-[#aa915d] mt-1.5" />
+              <div className="w-[8%] flex justify-center">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#aa915d] relative z-10" />
               </div>
-              <div className={`w-[45%] flex items-center ${item.side === "left" ? "pl-5" : "pr-5 justify-end"}`}>
-                <span className="text-[28px]">{item.icon}</span>
+              <div className={`w-[46%] ${item.side === "right" ? "pl-4" : ""}`}>
+                {item.side === "right" && (
+                  <>
+                    <p className="font-heading text-[#aa915d] text-[15px] font-bold">{item.time}</p>
+                    <p className="font-heading text-[#1a1a1a] text-[10px] uppercase tracking-[0.06em] leading-snug mt-0.5">{item.text}</p>
+                  </>
+                )}
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
-      </section>
-
-      {/* ══════ COUPLE ILLUSTRATION ══════ */}
-      <section className="bg-white relative py-6 overflow-hidden">
-        <motion.div {...fade()} className="relative mx-auto w-[240px]">
-          <div className="absolute -left-[50px] -top-[10px] w-[120px] h-[120px] animate-spin-slow pointer-events-none opacity-50">
-            <Image src="/img/flower-decor.svg" alt="" fill />
-          </div>
-          <Image src="/img/couple-photo.svg" alt="" width={240} height={360} className="relative z-10 w-full h-auto" />
-          <div className="absolute -right-[20px] -bottom-[10px] w-[120px] h-[120px] animate-spin-slow pointer-events-none opacity-50" style={{ animationDirection: "reverse" }}>
-            <Image src="/img/flower-decor.svg" alt="" fill />
-          </div>
         </motion.div>
       </section>
 
@@ -336,34 +326,15 @@ export default function InvitePage() {
       </section>
 
       {/* ══════ FOOTER ══════ */}
-      <section className="bg-[#1a1a1a] px-8 pt-10 pb-8 text-center">
+      <section className="bg-white px-8 pt-8 pb-12 text-center">
         <motion.div {...fade()}>
-          <p className="font-script text-[2rem] text-[#aa915d] leading-snug">
+          <p className="font-script text-[2rem] text-[#826547] leading-snug">
             Қуанышымызға
             <br />ортақ болыңыздар!
           </p>
 
-          <div className="mt-6 mx-auto max-w-[260px]">
-            <div className="flex justify-between items-baseline mb-2">
-              <span className="font-heading text-white/50 text-[10px] uppercase tracking-[0.15em]">{cal.name}</span>
-              <span className="font-heading text-white/50 text-[10px]">{cal.y}</span>
-            </div>
-            <div className="grid grid-cols-7 text-center font-heading text-[9px] text-white/30">
-              {dayH.map(d => <span key={d} className="py-1">{d}</span>)}
-              {Array.from({ length: cal.shift }).map((_, i) => <span key={`e${i}`} />)}
-              {Array.from({ length: cal.days }).map((_, i) => {
-                const day = i + 1;
-                return (
-                  <span key={day} className={`py-1 ${day === cal.td ? "text-[#aa915d] font-bold text-[11px]" : "text-white/40"}`}>
-                    {day}
-                  </span>
-                );
-              })}
-            </div>
-          </div>
-
           <div className="flex justify-center mt-6">
-            <Image src="/img/decor-branch.svg" alt="" width={100} height={50} className="opacity-30" />
+            <Image src="/img/decor-branch.svg" alt="" width={120} height={60} />
           </div>
         </motion.div>
       </section>
