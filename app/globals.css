@@ -26,8 +26,9 @@ body {
 
 @media (min-width: 480px) {
   body {
-    width: 390px;
-    margin: auto;
+    max-width: 390px;
+    margin: 0 auto;
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
   }
 }
 
@@ -39,12 +40,6 @@ body {
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
-
-@keyframes flash-move {
-  30%, 100% {
-    transform: skewX(-45deg) translateX(33.5em);
-  }
 }
 
 .animate-spin-slow {
