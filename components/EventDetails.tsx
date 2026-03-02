@@ -11,43 +11,56 @@ import {
 
 export default function EventDetails() {
   return (
-    <section className="px-6 py-20 sm:py-28">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.8 }}
-        className="mx-auto max-w-lg text-center"
-      >
-        <p className="ornament mb-4">❋</p>
+    <section className="bg-bg px-6 py-20 sm:py-28">
+      <div className="mx-auto max-w-lg">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <h3 className="font-heading text-xs tracking-[0.3em] uppercase text-accent mb-6">
+              Той салтанаты
+            </h3>
+            <p className="font-heading text-2xl sm:text-3xl font-semibold text-white mb-2">
+              {EVENT_DATE_DISPLAY}
+            </p>
+            <p className="font-body text-lg text-white-soft">
+              Басталу уақыты: {EVENT_TIME}
+            </p>
+          </motion.div>
 
-        <div className="rounded-2xl border border-gold/20 bg-white/50 backdrop-blur-sm p-8 sm:p-12 shadow-sm">
-          <h3 className="font-serif text-lg sm:text-xl text-text-light tracking-widest uppercase mb-6">
-            Басталу уақыты
-          </h3>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-center"
+          >
+            <h3 className="font-heading text-xs tracking-[0.3em] uppercase text-accent mb-6">
+              Мекен-жайымыз
+            </h3>
+            <p className="font-heading text-xl sm:text-2xl font-semibold text-white mb-2">
+              {VENUE_NAME}
+            </p>
+            <p className="font-body text-base text-white-soft">{VENUE_CITY}</p>
+          </motion.div>
+        </div>
 
-          <p className="font-serif text-3xl sm:text-4xl font-semibold text-text mb-2">
-            {EVENT_DATE_DISPLAY}
-          </p>
-
-          <p className="font-serif text-2xl sm:text-3xl text-gold font-medium">
-            {EVENT_TIME}
-          </p>
-
-          <div className="gold-divider" />
-
-          <p className="font-serif text-lg sm:text-xl text-text leading-relaxed">
-            {VENUE_CITY}
-          </p>
-          <p className="font-serif text-xl sm:text-2xl text-text font-semibold mt-1">
-            {VENUE_NAME}
-          </p>
-
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-12 text-center"
+        >
           <a
             href={VENUE_MAP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-6 py-3 font-serif text-sm sm:text-base text-gold-dark transition-colors hover:bg-gold/20"
+            className="inline-flex items-center gap-3 rounded-full border border-accent/40 px-8 py-3 font-heading text-sm tracking-wider uppercase text-accent transition-all hover:bg-accent hover:text-bg"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +68,7 @@ export default function EventDetails() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="h-5 w-5"
+              className="h-4 w-4"
             >
               <path
                 strokeLinecap="round"
@@ -68,18 +81,10 @@ export default function EventDetails() {
                 d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
               />
             </svg>
-            2ГИС картадан қарау
+            Картаға өту
           </a>
-        </div>
-
-        <p className="mt-8 font-serif text-sm sm:text-base text-text-light leading-relaxed">
-          Сіздерге ыңғайлы болуы үшін
-          <br />
-          2ГИС картаны пайдалануыңызды
-          <br />
-          сұраймыз!
-        </p>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

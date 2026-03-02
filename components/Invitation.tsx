@@ -10,62 +10,49 @@ import {
 
 export default function Invitation() {
   return (
-    <section className="relative px-6 py-24 sm:py-32">
-      <div className="mx-auto max-w-2xl text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.9 }}
-        >
-          <p className="ornament mb-4">❋</p>
+    <section className="bg-bg px-6 py-20 sm:py-28">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1 }}
+        className="mx-auto max-w-lg text-center"
+      >
+        <h2 className="font-heading text-xs sm:text-sm tracking-[0.4em] uppercase text-accent mb-10">
+          Тойға шақыру
+        </h2>
 
-          <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-text mb-8 leading-relaxed">
-            Құрметті ағайын-туыс,
-            <br />
-            бауырлар, дос-жарандар,
-            <br />
-            көршілер және әріптестер!
-          </h2>
+        <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-white uppercase tracking-wider leading-snug mb-8">
+          Құрметті қонақтар!
+        </h3>
 
-          <div className="gold-divider" />
+        <p className="font-body text-base sm:text-lg text-white-soft leading-relaxed mb-6">
+          Сіздерді ұлымыз
+        </p>
 
-          <p className="font-serif text-lg sm:text-xl text-text-light leading-relaxed mt-8">
-            Сіздерді ұлымыз
-          </p>
+        <p className="font-script text-4xl sm:text-5xl text-white my-2">
+          {GROOM} & {BRIDE}
+        </p>
 
-          <p className="font-script text-4xl sm:text-5xl text-gold my-4">
-            {GROOM}
-          </p>
+        <p className="font-body text-base sm:text-lg text-white-soft leading-relaxed mt-6">
+          келініміздің шаңырақ көтеру тойына
+          <br />
+          арналған салтанатты
+          <br />
+          Ақ дастарханымыздың қадірлі
+          <br />
+          қонағы болуға шақырамыз!
+        </p>
 
-          <p className="font-serif text-lg sm:text-xl text-text-light">пен</p>
+        <div className="divider mt-10" />
 
-          <p className="font-script text-4xl sm:text-5xl text-gold my-4">
-            {BRIDE}
-          </p>
-
-          <p className="font-serif text-lg sm:text-xl text-text-light leading-relaxed mt-2">
-            келініміздің үйлену
-            <br />
-            тойына арналған салтанатты
-            <br />
-            ақ дастарханымыздың
-            <br />
-            қадірлі қонағы болуға
-            <br />
-            шақырамыз!
-          </p>
-
-          <div className="gold-divider" />
-
-          <p className="mt-8 font-serif text-base sm:text-lg text-text-light tracking-widest uppercase">
-            Той иелері:
-          </p>
-          <p className="mt-3 font-script text-3xl sm:text-4xl text-gold">
-            {PARENTS_FATHER} – {PARENTS_MOTHER}
-          </p>
-        </motion.div>
-      </div>
+        <p className="mt-6 font-heading text-xs tracking-[0.3em] uppercase text-white-muted">
+          той иелері
+        </p>
+        <p className="mt-3 font-heading text-xl sm:text-2xl font-medium text-white">
+          {PARENTS_FATHER} – {PARENTS_MOTHER}
+        </p>
+      </motion.div>
     </section>
   );
 }

@@ -46,17 +46,16 @@ export default function RsvpForm() {
 
   if (status === "success") {
     return (
-      <section className="px-6 py-20 sm:py-28">
+      <section className="bg-bg px-6 py-20 sm:py-28">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           className="mx-auto max-w-md text-center"
         >
-          <p className="ornament mb-4">✦</p>
-          <h3 className="font-script text-4xl sm:text-5xl text-gold mb-4">
+          <h3 className="font-heading text-3xl sm:text-4xl font-semibold text-white mb-4">
             Рахмет!
           </h3>
-          <p className="font-serif text-lg text-text-light">
+          <p className="font-body text-lg text-white-soft">
             Жауабыңыз қабылданды.
             <br />
             Сізді күтеміз!
@@ -67,28 +66,28 @@ export default function RsvpForm() {
   }
 
   return (
-    <section className="px-6 py-20 sm:py-28">
+    <section className="bg-bg px-6 py-20 sm:py-28">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.8 }}
-        className="mx-auto max-w-md text-center"
+        className="mx-auto max-w-md"
       >
-        <p className="ornament mb-4">❋</p>
-        <h2 className="font-serif text-xl sm:text-2xl text-text-light tracking-widest uppercase mb-2">
-          Тойға қатысуыңызды
-        </h2>
-        <h2 className="font-serif text-xl sm:text-2xl text-text-light tracking-widest uppercase mb-10">
-          растауыңызды сұраймыз
-        </h2>
+        <div className="text-center mb-10">
+          <h2 className="font-heading text-xs sm:text-sm tracking-[0.4em] uppercase text-accent mb-4">
+            Сауалнама
+          </h2>
+          <p className="font-heading text-xl sm:text-2xl font-semibold text-white uppercase tracking-wider">
+            Тойға қатысуыңызды
+            <br />
+            растауыңызды сұраймыз
+          </p>
+        </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col gap-6 text-left"
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div>
-            <label className="mb-2 block font-serif text-sm text-text-light tracking-wider uppercase">
+            <label className="mb-2 block font-heading text-[10px] tracking-[0.2em] uppercase text-white-muted">
               Аты-жөніңіз
             </label>
             <input
@@ -97,22 +96,22 @@ export default function RsvpForm() {
               onChange={(e) => setName(e.target.value)}
               required
               placeholder="Есімдері"
-              className="w-full rounded-xl border border-gold/30 bg-white/60 px-4 py-3 font-serif text-base text-text placeholder:text-text-light/50 outline-none transition-colors focus:border-gold focus:ring-1 focus:ring-gold/30"
+              className="w-full border-b border-border bg-transparent px-0 py-3 font-body text-base text-white placeholder:text-white-muted/40 outline-none transition-colors focus:border-accent"
             />
           </div>
 
           <div>
-            <label className="mb-3 block font-serif text-sm text-text-light tracking-wider uppercase">
+            <label className="mb-3 block font-heading text-[10px] tracking-[0.2em] uppercase text-white-muted">
               Жұбайыңызбен келсеңіз, есімдеріңізді бірге жаза кетіңіз
             </label>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
               {RSVP_OPTIONS.map((option) => (
                 <label
                   key={option.value}
-                  className={`flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 transition-colors ${
+                  className={`flex cursor-pointer items-center gap-3 border px-4 py-3 transition-all ${
                     answer === option.value
-                      ? "border-gold bg-gold/10"
-                      : "border-gold/20 bg-white/40 hover:border-gold/40"
+                      ? "border-accent bg-accent/10"
+                      : "border-border bg-transparent hover:border-white-muted/30"
                   }`}
                 >
                   <input
@@ -124,17 +123,17 @@ export default function RsvpForm() {
                     className="sr-only"
                   />
                   <span
-                    className={`flex h-5 w-5 items-center justify-center rounded-full border-2 transition-colors ${
+                    className={`flex h-4 w-4 items-center justify-center rounded-full border transition-colors ${
                       answer === option.value
-                        ? "border-gold bg-gold"
-                        : "border-gold/40"
+                        ? "border-accent bg-accent"
+                        : "border-white-muted/40"
                     }`}
                   >
                     {answer === option.value && (
-                      <span className="block h-2 w-2 rounded-full bg-white" />
+                      <span className="block h-1.5 w-1.5 rounded-full bg-bg" />
                     )}
                   </span>
-                  <span className="font-serif text-base text-text">
+                  <span className="font-body text-sm text-white-soft">
                     {option.label}
                   </span>
                 </label>
@@ -148,7 +147,7 @@ export default function RsvpForm() {
               animate={{ opacity: 1, height: "auto" }}
               transition={{ duration: 0.3 }}
             >
-              <label className="mb-2 block font-serif text-sm text-text-light tracking-wider uppercase">
+              <label className="mb-2 block font-heading text-[10px] tracking-[0.2em] uppercase text-white-muted">
                 Неше адам болып келесіздер?
               </label>
               <input
@@ -157,7 +156,7 @@ export default function RsvpForm() {
                 max="20"
                 value={guestCount}
                 onChange={(e) => setGuestCount(e.target.value)}
-                className="w-full rounded-xl border border-gold/30 bg-white/60 px-4 py-3 font-serif text-base text-text outline-none transition-colors focus:border-gold focus:ring-1 focus:ring-gold/30"
+                className="w-full border-b border-border bg-transparent px-0 py-3 font-body text-base text-white outline-none transition-colors focus:border-accent"
               />
             </motion.div>
           )}
@@ -165,13 +164,13 @@ export default function RsvpForm() {
           <button
             type="submit"
             disabled={status === "loading" || !name || !answer}
-            className="mt-2 rounded-full bg-gold px-8 py-3 font-serif text-base font-medium text-white tracking-wider uppercase transition-all hover:bg-gold-dark disabled:opacity-50 disabled:cursor-not-allowed"
+            className="mt-4 w-full border border-accent bg-transparent py-3 font-heading text-xs tracking-[0.3em] uppercase text-accent transition-all hover:bg-accent hover:text-bg disabled:opacity-30 disabled:cursor-not-allowed"
           >
             {status === "loading" ? "Жіберілуде..." : "Жіберу"}
           </button>
 
           {status === "error" && (
-            <p className="text-center font-serif text-sm text-red-500">
+            <p className="text-center font-body text-sm text-red-400">
               Қате пайда болды. Қайтадан көріңіз.
             </p>
           )}

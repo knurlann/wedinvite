@@ -14,7 +14,6 @@ interface TimeLeft {
 function calcTimeLeft(): TimeLeft {
   const diff = EVENT_DATE.getTime() - Date.now();
   if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-
   return {
     days: Math.floor(diff / (1000 * 60 * 60 * 24)),
     hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
@@ -35,38 +34,36 @@ export default function Countdown() {
   }, []);
 
   if (!time) {
-    return (
-      <section className="py-20 text-center">
-        <div className="h-32" />
-      </section>
-    );
+    return <section className="h-48 bg-bg" />;
   }
 
   const values = [time.days, time.hours, time.minutes, time.seconds];
 
   return (
-    <section className="py-20 sm:py-28">
+    <section className="bg-bg py-16 sm:py-24">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.8 }}
-        className="mx-auto max-w-xl text-center"
+        transition={{ duration: 1 }}
+        className="mx-auto max-w-md px-6 text-center"
       >
-        <p className="ornament mb-4">✦</p>
-        <h2 className="font-serif text-xl sm:text-2xl text-text-light tracking-widest uppercase mb-10">
-          Той салтанаты
-        </h2>
-
-        <div className="flex items-center justify-center gap-4 sm:gap-8">
+        <div className="flex items-start justify-center gap-2 sm:gap-4">
           {values.map((val, i) => (
-            <div key={labels[i]} className="flex flex-col items-center">
-              <span className="block w-18 sm:w-24 h-18 sm:h-24 flex items-center justify-center rounded-xl border border-gold/30 bg-white/60 backdrop-blur-sm text-3xl sm:text-5xl font-serif font-semibold text-gold tabular-nums">
-                {String(val).padStart(2, "0")}
-              </span>
-              <span className="mt-2 font-serif text-xs sm:text-sm text-text-light tracking-wider uppercase">
-                {labels[i]}
-              </span>
+            <div key={labels[i]} className="flex items-start gap-2 sm:gap-4">
+              <div className="flex flex-col items-center">
+                <span className="font-heading text-4xl sm:text-6xl md:text-7xl font-light text-white tabular-nums">
+                  {String(val).padStart(2, "0")}
+                </span>
+                <span className="mt-2 font-body text-[10px] sm:text-xs tracking-[0.2em] uppercase text-white-muted">
+                  {labels[i]}
+                </span>
+              </div>
+              {i < 3 && (
+                <span className="font-heading text-4xl sm:text-6xl md:text-7xl font-light text-accent">
+                  :
+                </span>
+              )}
             </div>
           ))}
         </div>
