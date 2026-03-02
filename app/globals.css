@@ -1,26 +1,60 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-cream: #faf6f0;
+  --color-gold: #c9a84c;
+  --color-gold-light: #e0c97f;
+  --color-gold-dark: #9e7e2e;
+  --color-blush: #f5e6da;
+  --color-text: #3d2c1e;
+  --color-text-light: #7a6555;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: var(--color-cream);
+  --color-gold: var(--color-gold);
+  --color-gold-light: var(--color-gold-light);
+  --color-gold-dark: var(--color-gold-dark);
+  --color-blush: var(--color-blush);
+  --color-text: var(--color-text);
+  --color-text-light: var(--color-text-light);
+  --font-serif: var(--font-cormorant), "Georgia", serif;
+  --font-script: var(--font-great-vibes), cursive;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-gold-light);
+  color: var(--color-text);
+}
+
+.gold-divider {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold),
+    transparent
+  );
+  margin: 2rem auto;
+}
+
+.ornament {
+  color: var(--color-gold);
+  font-size: 2rem;
+  letter-spacing: 0.5em;
+  user-select: none;
 }
