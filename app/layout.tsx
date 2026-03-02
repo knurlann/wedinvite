@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
   Cormorant_Garamond,
   Great_Vibes,
@@ -27,6 +27,13 @@ const greatVibes = Great_Vibes({
 export const metadata: Metadata = {
   title: "Нұрлан & Тоқжан | Той шақыруы",
   description: "Нұрлан мен Тоқжанның үйлену тойына арналған онлайн шақыру",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({

@@ -8,33 +8,46 @@ import {
   PARENTS_MOTHER,
 } from "@/lib/constants";
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function Invitation() {
   return (
-    <section className="bg-bg px-6 py-20 sm:py-28">
+    <section className="bg-white px-8 py-16">
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 1 }}
-        className="mx-auto max-w-lg text-center"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        className="text-center"
       >
-        <h2 className="font-heading text-xs sm:text-sm tracking-[0.4em] uppercase text-accent mb-10">
-          Тойға шақыру
-        </h2>
-
-        <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-white uppercase tracking-wider leading-snug mb-8">
-          Құрметті қонақтар!
-        </h3>
-
-        <p className="font-body text-base sm:text-lg text-white-soft leading-relaxed mb-6">
+        <p className="font-heading text-gold text-lg tracking-wider mb-6">
           Сіздерді ұлымыз
         </p>
 
-        <p className="font-script text-4xl sm:text-5xl text-white my-2">
+        <h2 className="font-heading text-2xl font-bold text-black uppercase tracking-wide leading-snug mb-6">
+          Құрметті
+          <br />
+          қонақтар!
+        </h2>
+
+        <p className="font-script text-4xl text-black my-4">
           {GROOM} & {BRIDE}
         </p>
+      </motion.div>
 
-        <p className="font-body text-base sm:text-lg text-white-soft leading-relaxed mt-6">
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
+        className="text-center mt-6"
+      >
+        <p className="font-body text-base text-text leading-relaxed">
           келініміздің шаңырақ көтеру тойына
           <br />
           арналған салтанатты
@@ -44,12 +57,12 @@ export default function Invitation() {
           қонағы болуға шақырамыз!
         </p>
 
-        <div className="divider mt-10" />
+        <div className="w-12 h-px bg-gold mx-auto my-8" />
 
-        <p className="mt-6 font-heading text-xs tracking-[0.3em] uppercase text-white-muted">
+        <p className="font-heading text-xs tracking-[0.3em] uppercase text-gold-brown">
           той иелері
         </p>
-        <p className="mt-3 font-heading text-xl sm:text-2xl font-medium text-white">
+        <p className="mt-2 font-heading text-lg font-semibold text-black">
           {PARENTS_FATHER} – {PARENTS_MOTHER}
         </p>
       </motion.div>

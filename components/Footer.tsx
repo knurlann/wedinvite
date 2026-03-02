@@ -3,30 +3,30 @@
 import { motion } from "framer-motion";
 import { GROOM, BRIDE } from "@/lib/constants";
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function Footer() {
   return (
-    <section className="bg-bg px-6 py-20 sm:py-28">
+    <section className="bg-white px-8 py-16">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.8 }}
-        className="mx-auto max-w-md text-center"
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        className="text-center"
       >
-        <p className="font-heading text-xl sm:text-2xl font-semibold text-white uppercase tracking-wider mb-4">
+        <p className="font-heading text-gold-brown text-base leading-relaxed mb-6">
           Қуанышымызға
           <br />
           ортақ болыңыздар!
         </p>
 
-        <div className="divider" />
-
-        <p className="mt-6 font-script text-4xl sm:text-5xl text-white">
+        <p className="font-script text-4xl text-black">
           {GROOM} & {BRIDE}
-        </p>
-
-        <p className="mt-12 font-heading text-[10px] tracking-[0.2em] uppercase text-white-muted/40">
-          2026
         </p>
       </motion.div>
     </section>
