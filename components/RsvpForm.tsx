@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { RSVP_OPTIONS, GOOGLE_SCRIPT_URL } from "@/lib/constants";
+import { RSVP_OPTIONS } from "@/lib/constants";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -19,19 +19,19 @@ export default function RsvpForm() {
     setStatus("loading");
 
     try {
-      const params = new URLSearchParams({
-        name,
-        answer:
-          RSVP_OPTIONS.find((o) => o.value === answer)?.label ?? answer,
-        guestCount: answer === "not_coming" ? "0" : guestCount,
-        timestamp: new Date().toISOString(),
+      const res = await fetch("/api/rsvp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          answer:
+            RSVP_OPTIONS.find((o) => o.value === answer)?.label ?? answer,
+          guestCount: answer === "not_coming" ? 0 : Number(guestCount),
+          timestamp: new Date().toISOString(),
+        }),
       });
 
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        body: params,
-      });
+      if (!res.ok) throw new Error("Request failed");
       setStatus("success");
     } catch {
       setStatus("error");
