@@ -36,6 +36,8 @@ const fade = (delay = 0) => ({
   transition: { duration: 2.5, delay, ease: "easeOut" as const },
 });
 
+const kazFont = { fontFamily: "'kaz', Arial, sans-serif" } as const;
+
 type Status = "idle" | "loading" | "success" | "error";
 
 export default function InvitePage() {
@@ -43,7 +45,6 @@ export default function InvitePage() {
   const [mounted, setMounted] = useState(false);
   const [name, setName] = useState("");
   const [answer, setAnswer] = useState("");
-  const [guestCount, setGuestCount] = useState("1");
   const [formStatus, setFormStatus] = useState<Status>("idle");
 
   useEffect(() => {
@@ -64,7 +65,7 @@ export default function InvitePage() {
         body: JSON.stringify({
           name,
           answer: RSVP_OPTIONS.find(o => o.value === answer)?.label ?? answer,
-          guestCount: answer === "not_coming" ? 0 : Number(guestCount),
+          guestCount: answer === "not_coming" ? 0 : answer === "coming_with_spouse" ? 2 : 1,
           timestamp: new Date().toLocaleString("ru-KZ", {
             day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit", timeZone: "Asia/Almaty",
           }),
@@ -274,119 +275,114 @@ export default function InvitePage() {
       </section>
 
       {/* ══════ САУАЛНАМА / RSVP (1:1 design-14) ══════ */}
-      <section className="bg-white px-6 pt-10 pb-8">
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 3, ease: "easeOut" }}
-          className="text-center mb-8"
-        >
-          <p className="font-script text-[2.2rem] text-[#826547]">Сауалнама</p>
-          <p className="mt-3 font-heading text-[#826547] text-[12px] leading-relaxed text-center max-w-[290px] mx-auto">
-            тойға қатысуыңызды
-            <br />
-            растауыңызды сұраймыз:
-          </p>
-        </motion.div>
-
-        {formStatus === "success" ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="text-center py-8"
-          >
-            <p className="font-script text-[2rem] text-[#826547] mb-2">Рахмет!</p>
-            <p className="font-body text-[13px] text-[#1a1a1a]/70">Жауабыңыз қабылданды. Сізді күтеміз!</p>
+      <section className="bg-white pt-10 pb-8">
+        <div className="mx-auto w-full px-[4px]">
+          <motion.div {...fade()} className="mb-2 flex justify-center">
+            <Image src="/img/ornament.svg" alt="" width={50} height={25} />
           </motion.div>
-        ) : (
-          <motion.form
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 3, delay: 0.3, ease: "easeOut" }}
+            className="w-full text-center"
+          >
+            <p className="text-[32px] leading-[1.55] text-[#826547]" style={{ ...kazFont, fontWeight: 900 }}>
+              Сауалнама
+            </p>
+          </motion.div>
+
+          <motion.p
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 3, delay: 0.2, ease: "easeOut" }}
-            onSubmit={handleSubmit}
-            className="mx-auto max-w-[313px] flex flex-col gap-5"
+            transition={{ duration: 1.7, ease: "easeOut" }}
+            className="mx-auto mt-[15px] w-[calc(100%-36px)] max-w-[354px] text-center text-[12px] leading-[1.7] text-black"
+            style={{ ...kazFont, fontWeight: 200 }}
           >
-            <div>
-              <label className="block font-heading text-[#1a1a1a] text-[11px] uppercase tracking-[0.1em] mb-2">
-                Аты-Жөніңіз
-              </label>
-              <input
-                type="text"
-                value={name}
-                onChange={e => setName(e.target.value)}
-                required
-                placeholder="Есімдері"
-                className="w-full bg-transparent border-0 border-b-2 border-[#d4c4a8] px-0 py-2.5 font-body text-[14px] text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 outline-none focus:border-[#826547] transition-colors"
-              />
-            </div>
+            тойға қатысуыңызды
+            <br />
+            растауыңызды сұраймыз:
+          </motion.p>
 
-            <div>
-              <p className="font-heading text-[#1a1a1a] text-[11px] uppercase tracking-[0.08em] mb-3">
-                Жұбайыңызбен келсеңіз, есімдеріңізді бірге жаза кетіңіз
-              </p>
-              <div className="flex flex-col gap-2">
-                {RSVP_OPTIONS.map(opt => (
-                  <label
-                    key={opt.value}
-                    className="flex items-center gap-3 py-2 cursor-pointer border-b border-[#eee] last:border-0"
-                  >
-                    <input
-                      type="radio"
-                      name="rsvp"
-                      value={opt.value}
-                      checked={answer === opt.value}
-                      onChange={e => setAnswer(e.target.value)}
-                      className="sr-only"
-                    />
-                    <span
-                      className={`flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
-                        answer === opt.value ? "border-[#826547] bg-[#826547]" : "border-[#c4b8a8]"
-                      }`}
-                    >
-                      {answer === opt.value && <span className="block h-2 w-2 rounded-full bg-white" />}
-                    </span>
-                    <span className="font-body text-[13px] text-[#1a1a1a]">{opt.label}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {answer && answer !== "not_coming" && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                transition={{ duration: 0.35 }}
-              >
-                <label className="block font-heading text-[#1a1a1a] text-[11px] uppercase tracking-[0.08em] mb-2">
-                  Неше адам болып келесіздер?
-                </label>
-                <input
-                  type="number"
-                  min={1}
-                  max={20}
-                  value={guestCount}
-                  onChange={e => setGuestCount(e.target.value)}
-                  className="w-full bg-transparent border-0 border-b-2 border-[#d4c4a8] px-0 py-2.5 font-body text-[14px] text-[#1a1a1a] outline-none focus:border-[#826547] transition-colors"
-                />
-              </motion.div>
-            )}
-
-            <button
-              type="submit"
-              disabled={formStatus === "loading" || !name || !answer}
-              className="mt-2 w-full rounded-full bg-[#826547] py-3 font-heading text-[11px] tracking-[0.2em] uppercase text-white transition-opacity hover:opacity-90 active:opacity-80 disabled:opacity-40 disabled:cursor-not-allowed"
+          {formStatus === "success" ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
+              className="mt-[23px] w-full py-4 text-center"
             >
-              {formStatus === "loading" ? "Жіберілуде..." : "Жауапты жіберу"}
-            </button>
+              <p className="text-[16px] text-black" style={{ ...kazFont, fontWeight: 700 }}>
+                Жауабыңызға рақмет!
+              </p>
+            </motion.div>
+          ) : (
+            <motion.form
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 3, ease: "easeOut" }}
+              onSubmit={handleSubmit}
+              className="mt-[23px] w-full"
+            >
+              <div className="mb-5">
+                <input
+                  type="text"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  required
+                  placeholder="Аты-Жөніңіз"
+                  className="h-[50px] w-full border-0 border-b border-black bg-transparent px-0 text-[14px] leading-[1.33] text-black outline-none placeholder:uppercase placeholder:text-[#99928a]"
+                  style={{ ...kazFont, fontWeight: 200 }}
+                />
+              </div>
 
-            {formStatus === "error" && (
-              <p className="text-center font-body text-[12px] text-red-500">Қате пайда болды. Қайтадан көріңіз.</p>
-            )}
-          </motion.form>
-        )}
+              <div className="mb-5">
+                <p className="mb-[5px] text-[10px] leading-[1.55] text-black" style={{ ...kazFont, fontWeight: 200 }}>
+                  Жұбыңызбен келсеңіз, есімдеріңізді бірге жаза кетіңіз
+                </p>
+                <div className="mt-[26px]">
+                  {RSVP_OPTIONS.map((opt, index) => (
+                    <label key={opt.value} className={`flex cursor-pointer items-center ${index < RSVP_OPTIONS.length - 1 ? "mb-[18px]" : ""}`}>
+                      <input
+                        type="radio"
+                        name="rsvp"
+                        value={opt.value}
+                        checked={answer === opt.value}
+                        onChange={e => setAnswer(e.target.value)}
+                        className="peer sr-only"
+                      />
+                      <span className="relative mr-[10px] inline-block h-5 w-5 shrink-0 rounded-full border-2 border-black opacity-60 transition-opacity peer-checked:opacity-100">
+                        <span className="absolute inset-0 m-auto h-[10px] w-[10px] rounded-full bg-black opacity-0 transition-opacity peer-checked:opacity-100" />
+                      </span>
+                      <span className="text-[10px] leading-[1.55] text-black" style={{ ...kazFont, fontWeight: 200 }}>
+                        {opt.label}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  disabled={formStatus === "loading" || !name || !answer}
+                  className="h-[40px] w-[80.2%] rounded-[1px] border border-[#aa915d] bg-[#aa915d] px-3 text-center text-[16px] leading-none text-white transition-opacity disabled:opacity-60"
+                  style={{ ...kazFont, fontWeight: 200 }}
+                >
+                  {formStatus === "loading" ? "Жіберілуде..." : "Жауапты жіберу"}
+                </button>
+              </div>
+
+              {formStatus === "error" && (
+                <p className="mt-2 text-center text-[12px] text-red-500" style={{ ...kazFont, fontWeight: 200 }}>
+                  Қате пайда болды. Қайтадан көріңіз.
+                </p>
+              )}
+            </motion.form>
+          )}
+        </div>
       </section>
 
       {/* ══════ FOOTER ══════ */}

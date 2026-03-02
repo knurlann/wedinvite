@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "kaz";
+  src: url("https://static.tildacdn.pro/tild6539-6331-4366-a638-393866393036/KZ_RomulC-_1_.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "kaz";
+  src: url("https://static.tildacdn.pro/tild3562-6633-4036-b962-366438393836/AsylbekM02Shelleykz_.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme inline {
   --font-heading: var(--font-playfair), "Georgia", serif;
   --font-body: var(--font-cormorant), "Georgia", serif;

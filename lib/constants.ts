@@ -17,7 +17,7 @@ export const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxmhDRMPP6gn4yQKLgLSTIg06OGf7iu1exAhZ0aOAn91vf52noVEtgZMRyXDXIxLP4QEQ/exec";
 
 export const RSVP_OPTIONS = [
-  { value: "coming", label: "Келемін" },
+  { value: "coming", label: "Иә, келемін" },
   { value: "coming_with_spouse", label: "Жұбайыммен келемін" },
-  { value: "not_coming", label: "Келе алмаймын" },
+  { value: "not_coming", label: "Өкінішке орай, келе алмаймын" },
 ] as const;
