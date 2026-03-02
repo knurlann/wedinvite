@@ -27,7 +27,13 @@ export default function RsvpForm() {
           answer:
             RSVP_OPTIONS.find((o) => o.value === answer)?.label ?? answer,
           guestCount: answer === "not_coming" ? 0 : Number(guestCount),
-          timestamp: new Date().toISOString(),
+          timestamp: new Date().toLocaleString("ru-KZ", {
+            day: "2-digit",
+            month: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            timeZone: "Asia/Almaty",
+          }),
         }),
       });
 

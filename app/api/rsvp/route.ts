@@ -9,7 +9,15 @@ export async function POST(request: NextRequest) {
       name: data.name || "",
       answer: data.answer || "",
       guestCount: String(data.guestCount ?? 1),
-      timestamp: data.timestamp || new Date().toISOString(),
+      timestamp:
+        data.timestamp ||
+        new Date().toLocaleString("ru-KZ", {
+          day: "2-digit",
+          month: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          timeZone: "Asia/Almaty",
+        }),
     });
 
     const res = await fetch(GOOGLE_SCRIPT_URL, {
