@@ -14,7 +14,7 @@ export const VENUE_MAP_URL =
   "https://2gis.kz/almaty/search/%D0%A1%D0%B0%D0%BC%D0%B8%D1%80%203";
 
 export const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycby_0_hUcPQW4Xe5AyHJkOhexFvk81YLVHipOYxWXTOHeUWJG7yWtyUlmF_iC7tVpRap/exec";
+  "https://script.google.com/macros/s/AKfycbxmhDRMPP6gn4yQKLgLSTIg06OGf7iu1exAhZ0aOAn91vf52noVEtgZMRyXDXIxLP4QEQ/exec";
 
 export const RSVP_OPTIONS = [
   { value: "coming", label: "Келемін" },

@@ -16,10 +16,25 @@ const SHEET_NAME = "RSVP";
 
 function doPost(e) {
   try {
-    const data = JSON.parse(e.postData.contents);
-    const sheet =
-      SpreadsheetApp.openById(SHEET_ID).getSheetByName(SHEET_NAME) ||
-      SpreadsheetApp.openById(SHEET_ID).insertSheet(SHEET_NAME);
+    var data;
+
+    if (e.postData.type === "application/x-www-form-urlencoded") {
+      data = {
+        name: e.parameter.name,
+        answer: e.parameter.answer,
+        guestCount: e.parameter.guestCount,
+        timestamp: e.parameter.timestamp,
+      };
+    } else {
+      data = JSON.parse(e.postData.contents);
+    }
+
+    var ss = SpreadsheetApp.openById(SHEET_ID);
+    var sheet = ss.getSheetByName(SHEET_NAME);
+
+    if (!sheet) {
+      sheet = ss.insertSheet(SHEET_NAME);
+    }
 
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(["Есімі", "Жауабы", "Адам саны", "Уақыты"]);
@@ -27,8 +42,8 @@ function doPost(e) {
     }
 
     sheet.appendRow([
-      data.name,
-      data.answer,
+      data.name || "",
+      data.answer || "",
       data.guestCount || 1,
       data.timestamp || new Date().toISOString(),
     ]);

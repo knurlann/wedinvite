@@ -19,17 +19,18 @@ export default function RsvpForm() {
     setStatus("loading");
 
     try {
+      const params = new URLSearchParams({
+        name,
+        answer:
+          RSVP_OPTIONS.find((o) => o.value === answer)?.label ?? answer,
+        guestCount: answer === "not_coming" ? "0" : guestCount,
+        timestamp: new Date().toISOString(),
+      });
+
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          answer:
-            RSVP_OPTIONS.find((o) => o.value === answer)?.label ?? answer,
-          guestCount: Number(guestCount),
-          timestamp: new Date().toISOString(),
-        }),
+        body: params,
       });
       setStatus("success");
     } catch {
