@@ -83,6 +83,8 @@ export default function InvitePage() {
       if (!res.ok) throw new Error("fail");
       setFormStatus("success");
       setShowSuccessPopup(true);
+      setName("");
+      setAnswer("");
     } catch { setFormStatus("error"); }
   }
 
