@@ -54,6 +54,7 @@ export default function InvitePage() {
   const [name, setName] = useState("");
   const [answer, setAnswer] = useState("");
   const [formStatus, setFormStatus] = useState<Status>("idle");
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -81,7 +82,13 @@ export default function InvitePage() {
       });
       if (!res.ok) throw new Error("fail");
       setFormStatus("success");
+      setShowSuccessPopup(true);
     } catch { setFormStatus("error"); }
+  }
+
+  function closeSuccessPopup() {
+    setShowSuccessPopup(false);
+    setFormStatus("idle");
   }
 
   const cal = getCalendar();
@@ -158,12 +165,9 @@ export default function InvitePage() {
           className="absolute left-[34px] top-[529px] w-[323px] text-center text-white tabular-nums"
           style={{ ...kazakhFont, fontWeight: 600 }}
         >
-          {tl.map((v, i) => (
-            <span key={i} className="inline-flex items-baseline">
-              <span className="text-[30px] leading-[51px]">{String(v).padStart(2, "0")}</span>
-              {i < 3 && <span className="px-[6px] text-[30px] leading-[51px]">:</span>}
-            </span>
-          ))}
+          <span className="text-[30px] leading-[51px]">
+            {tl.map(v => String(v).padStart(2, "0")).join(" : ")}
+          </span>
         </div>
 
         <div className="absolute left-[72px] top-[583px] flex w-[251px] justify-between text-[8px] leading-[12px] text-white" style={{ ...kazFont, fontWeight: 200 }}>
@@ -248,7 +252,7 @@ export default function InvitePage() {
       </motion.div>
 
       {/* ══════ DATE + TIME (1:1) ══════ */}
-      <section className="bg-white px-[39px] pt-[20px] pb-[12px] text-center">
+      <section className="bg-white px-[39px] pt-[20px] pb-[40px] text-center">
         <motion.p
           {...fadeUp200()}
           className="text-[33px] leading-[51px] text-[#aa915d]"
@@ -294,7 +298,7 @@ export default function InvitePage() {
       </section>
 
       {/* ══════ PLACE + MAP (1:1) ══════ */}
-      <section className="bg-white px-[39px] pt-[34px] pb-[28px] text-center">
+      <section className="bg-white px-[39px] pt-[34px] pb-[56px] text-center">
         <motion.div {...fadeUp200()} className="mb-[12px] flex justify-center">
           <Image src="/img/ornament.svg" alt="" width={69} height={34} />
         </motion.div>
@@ -411,19 +415,7 @@ export default function InvitePage() {
             растауыңызды сұраймыз:
           </motion.p>
 
-          {formStatus === "success" ? (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4 }}
-              className="mt-[23px] w-full py-4 text-center"
-            >
-              <p className="text-[16px] text-black" style={{ ...kazFont, fontWeight: 700 }}>
-                Жауабыңызға рақмет!
-              </p>
-            </motion.div>
-          ) : (
-            <motion.form
+          <motion.form
               initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
@@ -448,24 +440,45 @@ export default function InvitePage() {
                   Жұбыңызбен келсеңіз, есімдеріңізді бірге жаза кетіңіз
                 </p>
                 <div className="mt-[26px]">
-                  {RSVP_OPTIONS.map((opt, index) => (
-                    <label key={opt.value} className={`flex cursor-pointer items-center ${index < RSVP_OPTIONS.length - 1 ? "mb-[18px]" : ""}`}>
-                      <input
-                        type="radio"
-                        name="rsvp"
-                        value={opt.value}
-                        checked={answer === opt.value}
-                        onChange={e => setAnswer(e.target.value)}
-                        className="peer sr-only"
-                      />
-                      <span className="relative mr-[10px] inline-block h-5 w-5 shrink-0 rounded-full border-2 border-black opacity-60 transition-opacity peer-checked:opacity-100">
-                        <span className="absolute inset-0 m-auto h-[10px] w-[10px] rounded-full bg-black opacity-0 transition-opacity peer-checked:opacity-100" />
-                      </span>
-                      <span className="text-[10px] leading-[1.55] text-black" style={{ ...kazFont, fontWeight: 200 }}>
-                        {opt.label}
-                      </span>
-                    </label>
-                  ))}
+                  {RSVP_OPTIONS.map((opt, index) => {
+                    const isSelected = answer === opt.value;
+                    return (
+                      <label
+                        key={opt.value}
+                        className={`flex cursor-pointer items-center rounded-[6px] px-[2px] py-[2px] transition-colors ${
+                          index < RSVP_OPTIONS.length - 1 ? "mb-[18px]" : ""
+                        } ${isSelected ? "bg-[#aa915d]/10" : ""}`}
+                      >
+                        <input
+                          type="radio"
+                          name="rsvp"
+                          value={opt.value}
+                          checked={isSelected}
+                          onChange={e => setAnswer(e.target.value)}
+                          className="peer sr-only"
+                        />
+                        <span
+                          className={`relative mr-[10px] inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-all peer-focus-visible:ring-2 peer-focus-visible:ring-[#aa915d]/40 ${
+                            isSelected ? "border-[#aa915d] ring-2 ring-[#aa915d]/30" : "border-black/60"
+                          }`}
+                        >
+                          <span
+                            className={`h-[10px] w-[10px] rounded-full transition-all ${
+                              isSelected ? "scale-100 bg-[#aa915d]" : "scale-0 bg-transparent"
+                            }`}
+                          />
+                        </span>
+                        <span
+                          className={`text-[10px] leading-[1.55] transition-colors ${
+                            isSelected ? "text-[#6b5630]" : "text-black"
+                          }`}
+                          style={{ ...kazFont, fontWeight: 200 }}
+                        >
+                          {opt.label}
+                        </span>
+                      </label>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -485,10 +498,47 @@ export default function InvitePage() {
                   Қате пайда болды. Қайтадан көріңіз.
                 </p>
               )}
-            </motion.form>
-          )}
+          </motion.form>
         </div>
       </section>
+
+      {showSuccessPopup && (
+        <div
+          className="fixed inset-0 z-[1000000] bg-black/80"
+          onClick={closeSuccessPopup}
+          role="button"
+          tabIndex={0}
+          onKeyDown={e => {
+            if (e.key === "Escape" || e.key === "Enter" || e.key === " ") closeSuccessPopup();
+          }}
+        >
+          <div
+            className="absolute left-1/2 top-1/2 w-[350px] max-w-[calc(100vw-40px)] -translate-x-1/2 -translate-y-1/2 rounded-[5px] bg-white px-5 pt-10 pb-[50px] text-center"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={closeSuccessPopup}
+              className="absolute right-[14px] top-[14px] h-[14px] w-[14px] text-black"
+              aria-label="Жабу"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 23 23" fill="currentColor">
+                <path d="M0 1.41L1.4 0l21.22 21.21-1.41 1.42z" />
+                <path d="M21.21 0l1.42 1.4L1.4 22.63 0 21.21z" />
+              </svg>
+            </button>
+
+            <svg className="mx-auto" width="50" height="50" viewBox="0 0 50 50" fill="#62C584" aria-hidden="true">
+              <path d="M25.1 49.28A24.64 24.64 0 0 1 .5 24.68 24.64 24.64 0 0 1 25.1.07a24.64 24.64 0 0 1 24.6 24.6 24.64 24.64 0 0 1-24.6 24.61zm0-47.45A22.87 22.87 0 0 0 2.26 24.68 22.87 22.87 0 0 0 25.1 47.52a22.87 22.87 0 0 0 22.84-22.84A22.87 22.87 0 0 0 25.1 1.83z" />
+              <path d="M22.84 30.53l-4.44-4.45a.88.88 0 1 1 1.24-1.24l3.2 3.2 8.89-8.9a.88.88 0 1 1 1.25 1.26L22.84 30.53z" />
+            </svg>
+
+            <p className="pt-[10px] text-[16px] text-black" style={{ ...kazFont, fontWeight: 300 }}>
+              <strong style={{ fontWeight: 700 }}>Жауабыңызға рақмет!</strong>
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* ══════ FOOTER ══════ */}
       <section className="bg-white px-8 pt-8 pb-12 text-center">
