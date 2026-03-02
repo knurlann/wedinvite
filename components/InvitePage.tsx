@@ -36,7 +36,15 @@ const fade = (delay = 0) => ({
   transition: { duration: 2.5, delay, ease: "easeOut" as const },
 });
 
+const fadeUp200 = (delay = 0) => ({
+  initial: { opacity: 0, y: 200 } as const,
+  whileInView: { opacity: 1, y: 0 } as const,
+  viewport: { once: true, margin: "-30px" } as const,
+  transition: { duration: 3, delay, ease: "easeOut" as const },
+});
+
 const kazFont = { fontFamily: "'kaz', Arial, sans-serif" } as const;
+const kazakhFont = { fontFamily: "'kazakh', Arial, sans-serif" } as const;
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -79,105 +87,185 @@ export default function InvitePage() {
   const cal = getCalendar();
   const tl = mounted ? time : [0,0,0,0];
   const dayH = ["Дс","Сс","Ср","Бс","Жм","Сб","Жс"];
+  const heroMonths = ["ҚАҢТАР","АҚПАН","НАУРЫЗ","СӘУІР","МАМЫР","МАУСЫМ","ШІЛДЕ","ТАМЫЗ","ҚЫРКҮЙЕК","ҚАЗАН","ҚАРАША","ЖЕЛТОҚСАН"];
+  const heroDateText = `${EVENT_DATE.getFullYear()} ЖЫЛ, ${EVENT_DATE.getDate()} ${heroMonths[EVENT_DATE.getMonth()]}`;
 
   return (
     <main className="w-full bg-white">
 
-      {/* ══════ HERO ══════ */}
-      <section className="relative w-full" style={{ height: "60vh", minHeight: 380 }}>
-        <Image src="/img/hero-bg.png" alt="" fill className="object-cover object-top" priority />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/50" />
+      {/* ══════ HERO (1:1) ══════ */}
+      <section className="relative h-[670px] w-full overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('/img/hero-bg.png')",
+            backgroundPosition: "26.427% 0%",
+            backgroundSize: "114.583%",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
+        <div className="absolute inset-0 bg-[#110b02]/70" />
 
-        <div className="absolute inset-0 z-10 flex flex-col items-center px-5 pt-4 pb-4">
-          <Image src="/img/logo.svg" alt="" width={30} height={30} className="mx-auto" />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="absolute left-[18px] top-[15px] h-[61px] w-[59px]"
+        >
+          <Image src="/img/gh.svg" alt="" fill className="object-contain" priority />
+        </motion.div>
 
-          <p className="mt-2 font-heading text-[9px] tracking-[0.35em] uppercase text-white/90">
-            Тойға шақыру
-          </p>
-          <p className="font-script text-[1.8rem] text-white leading-none mt-1">
-            {GROOM} & {BRIDE}
-          </p>
-          <p className="font-heading text-[8px] tracking-[0.2em] uppercase text-white/70 mt-1">
-            {EVENT_DATE_DISPLAY}
-          </p>
+        <motion.p
+          initial={{ opacity: 0, scale: 2.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 3, ease: "easeOut" }}
+          className="absolute left-[82px] top-[63px] w-[227px] text-center text-[10px] uppercase leading-[16px] tracking-[2px] text-white"
+          style={{ ...kazFont, fontWeight: 200 }}
+        >
+          ТОЙҒА ШАҚЫРУ
+        </motion.p>
 
-          <Image src="/img/gh.svg" alt="" width={36} height={36} className="mt-3" />
+        <motion.p
+          initial={{ opacity: 0, scale: 2.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 3, ease: "easeOut" }}
+          className="absolute left-[46px] top-[83px] w-[299px] text-center text-[30px] leading-[47px] text-white"
+          style={{ ...kazFont, fontWeight: 900 }}
+        >
+          {GROOM} & {BRIDE}
+        </motion.p>
 
-          <div className="flex-1" />
+        <motion.p
+          initial={{ opacity: 0, scale: 2.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 3, ease: "easeOut" }}
+          className="absolute left-[92px] top-[151px] w-[206px] text-center text-[8px] uppercase leading-[12px] tracking-[1.5px] text-white"
+          style={{ ...kazFont, fontWeight: 200 }}
+        >
+          {heroDateText}
+        </motion.p>
 
-          {/* Countdown */}
-          <div className="flex justify-center items-baseline font-heading text-white mb-1">
-            {tl.map((v, i) => (
-              <span key={i} className="flex items-baseline">
-                <span className="text-[1.6rem] font-bold tabular-nums leading-none w-[2rem] text-center">
-                  {String(v).padStart(2, "0")}
-                </span>
-                {i < 3 && <span className="text-[1.4rem] font-bold text-white/50 mx-[3px]">:</span>}
-              </span>
-            ))}
-          </div>
-          <div className="flex justify-center gap-[1.4rem] text-white/60 font-heading text-[8px] tracking-[0.15em] uppercase">
-            <span>Күн</span><span>Сағат</span><span>Минут</span><span>Секунд</span>
-          </div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
+          className="absolute left-[163px] top-[211px] h-[66px] w-[65px]"
+        >
+          <Image src="/img/logo.svg" alt="" fill className="object-contain" />
+        </motion.div>
+
+        <div
+          className="absolute left-[34px] top-[529px] w-[323px] text-center text-white tabular-nums"
+          style={{ ...kazakhFont, fontWeight: 600 }}
+        >
+          {tl.map((v, i) => (
+            <span key={i} className="inline-flex items-baseline">
+              <span className="text-[30px] leading-[51px]">{String(v).padStart(2, "0")}</span>
+              {i < 3 && <span className="px-[6px] text-[30px] leading-[51px]">:</span>}
+            </span>
+          ))}
+        </div>
+
+        <div className="absolute left-[72px] top-[583px] flex w-[251px] justify-between text-[8px] leading-[12px] text-white" style={{ ...kazFont, fontWeight: 200 }}>
+          <span>күн</span>
+          <span>cағат</span>
+          <span>минут</span>
+          <span>секунд</span>
+        </div>
+
+        <div className="absolute left-0 top-[623px] h-[20px] w-full overflow-hidden">
+          <motion.img
+            src="/img/divider-line.svg"
+            alt=""
+            className="h-[19px] w-[556px] max-w-none"
+            animate={{ x: [0, -162] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          />
         </div>
       </section>
 
-      {/* Ornament divider */}
-      <div className="w-full"><Image src="/img/divider-line.svg" alt="" width={390} height={12} className="w-full h-auto" /></div>
-
-      {/* ══════ ҚҰРМЕТТІ ҚОНАҚТАР ══════ */}
-      <section className="bg-white px-8 pt-10 pb-6 text-center">
-        <motion.p {...fade()} className="font-heading text-[#1a1a1a] text-[18px] font-bold uppercase tracking-[0.12em]">
-          Құрметті қонақтар!
+      {/* ══════ INVITATION TEXT (1:1) ══════ */}
+      <section className="bg-white px-[39px] pt-[43px] pb-[18px] text-center">
+        <motion.p
+          {...fadeUp200()}
+          className="text-[14px] uppercase leading-[22px] text-black"
+          style={{ ...kazFont, fontWeight: 200 }}
+        >
+          ҚҰРМЕТТІ ҚОНАҚТАР!
         </motion.p>
 
-        <motion.p {...fade(0.1)} className="mt-4 font-heading text-[#1a1a1a] text-[14px] font-semibold">
+        <motion.p
+          {...fadeUp200(0.08)}
+          className="mt-[17px] text-[11px] leading-[17px] text-black"
+          style={{ ...kazakhFont, fontWeight: 600 }}
+        >
           Сіздерді ұлымыз
         </motion.p>
 
-        <motion.p {...fade(0.15)} className="mt-3 font-script text-[2.4rem] text-[#1a1a1a] leading-tight">
+        <motion.p
+          {...fadeUp200(0.16)}
+          className="mt-[6px] text-[34px] leading-[53px] text-[#aa915d]"
+          style={{ ...kazFont, fontWeight: 900 }}
+        >
           {GROOM} мен {BRIDE}
         </motion.p>
 
-        <motion.p {...fade(0.2)} className="mt-5 font-heading text-[#1a1a1a] text-[12px] leading-[2.2] uppercase tracking-[0.08em]">
-          келініміздің шаңырақ көтеру
-          <br />тойына арналған салтанатты
-          <br />Ақ дастарханымыздың қадірлі
-          <br />қонағы болуға шақырамыз!
+        <motion.p
+          {...fadeUp200(0.24)}
+          className="mt-0 text-[11px] uppercase leading-[20px] text-black"
+          style={{ ...kazFont, fontWeight: 200 }}
+        >
+          келініміздің шаңырақ көтеру тойына арналған салтанатты
+          <br />
+          Ақ дастарханымыздың қадірлі қонағы болуға шақырамыз!
         </motion.p>
 
-        <motion.div {...fade(0.25)} className="flex justify-center my-6">
-          <Image src="/img/ornament.svg" alt="" width={50} height={25} />
+        <motion.div {...fadeUp200(0.32)} className="mt-5 flex justify-center">
+          <Image src="/img/ornament.svg" alt="" width={69} height={34} />
         </motion.div>
 
-        <motion.p {...fade(0.3)} className="font-heading text-[#1a1a1a] text-[12px] uppercase tracking-[0.15em]">
-          Той иелері:
+        <motion.p
+          {...fadeUp200(0.4)}
+          className="mt-[20px] text-[11px] uppercase leading-[17px] text-black"
+          style={{ ...kazFont, fontWeight: 200 }}
+        >
+          той иелері:
         </motion.p>
 
-        <motion.p {...fade(0.35)} className="mt-2 font-script text-[2rem] text-[#aa915d]">
-          {PARENTS_FATHER} – {PARENTS_MOTHER}
+        <motion.p
+          {...fadeUp200(0.48)}
+          className="mt-0 text-[30px] leading-[47px] text-[#aa915d]"
+          style={{ ...kazFont, fontWeight: 900 }}
+        >
+          {PARENTS_FATHER} - {PARENTS_MOTHER}
         </motion.p>
       </section>
 
       {/* ══════ VENUE PHOTO ══════ */}
-      <motion.div {...fade()} className="relative w-full h-[200px]">
+      <motion.div {...fadeUp200()} className="relative h-[250px] w-full">
         <Image src="/img/venue-photo.jpg" alt="" fill className="object-cover" />
+        <div className="absolute inset-0 bg-black/40" />
       </motion.div>
 
-      {/* ══════ ТОЙ САЛТАНАТЫ ══════ */}
-      <section className="bg-white px-8 pt-10 pb-4 text-center">
-        <motion.p {...fade()} className="font-script text-[2.2rem] text-[#aa915d]">
+      {/* ══════ DATE + TIME (1:1) ══════ */}
+      <section className="bg-white px-[39px] pt-[20px] pb-[12px] text-center">
+        <motion.p
+          {...fadeUp200()}
+          className="text-[33px] leading-[51px] text-[#aa915d]"
+          style={{ ...kazFont, fontWeight: 900 }}
+        >
           Той салтанаты:
         </motion.p>
 
-        <motion.div {...fade(0.1)} className="mt-3">
-          <p className="font-heading text-[#1a1a1a] text-[13px] font-bold uppercase tracking-[0.08em]">
-            {EVENT_DATE_DISPLAY}
-          </p>
-          <p className="font-heading text-[#1a1a1a] text-[13px] uppercase tracking-[0.08em] mt-0.5">
-            Басталу уақыты: <span className="underline">{EVENT_TIME}</span>
-          </p>
-        </motion.div>
+        <motion.p
+          {...fadeUp200(0.1)}
+          className="mt-[2px] text-[12px] leading-[22px] text-black"
+          style={{ ...kazFont, fontWeight: 200 }}
+        >
+          {EVENT_DATE_DISPLAY}
+          <br />
+          Басталу уақыты: <span className="underline">{EVENT_TIME}</span>
+        </motion.p>
       </section>
 
       {/* ══════ CALENDAR ══════ */}
@@ -205,30 +293,47 @@ export default function InvitePage() {
         </motion.div>
       </section>
 
-      {/* ══════ МЕКЕН-ЖАЙЫМЫЗ ══════ */}
-      <section className="bg-white px-8 pt-4 pb-4 text-center">
-        <motion.div {...fade()} className="flex justify-center mb-4">
-          <Image src="/img/ornament.svg" alt="" width={50} height={25} />
+      {/* ══════ PLACE + MAP (1:1) ══════ */}
+      <section className="bg-white px-[39px] pt-[34px] pb-[28px] text-center">
+        <motion.div {...fadeUp200()} className="mb-[12px] flex justify-center">
+          <Image src="/img/ornament.svg" alt="" width={69} height={34} />
         </motion.div>
 
-        <motion.p {...fade(0.1)} className="font-script text-[2.2rem] text-[#aa915d]">
-          Мекен-жайымыз:
+        <motion.p
+          {...fadeUp200(0.1)}
+          className="text-[33px] leading-[51px] text-[#aa915d]"
+          style={{ ...kazFont, fontWeight: 900 }}
+        >
+          Мекен - жайымыз:
         </motion.p>
 
-        <motion.p {...fade(0.15)} className="mt-3 font-heading text-[#1a1a1a] text-[13px] leading-[2] uppercase tracking-[0.08em]">
+        <motion.p
+          {...fadeUp200(0.18)}
+          className="mt-[12px] text-[11px] uppercase leading-[20px] text-black"
+          style={{ ...kazFont, fontWeight: 200 }}
+        >
           {VENUE_CITY},
-          <br />{VENUE_NAME}
+          <br />
+          {VENUE_NAME}
         </motion.p>
 
-        <motion.div {...fade(0.2)} className="mt-5">
-          <a href={VENUE_MAP_URL} target="_blank" rel="noopener noreferrer"
-            className="inline-block rounded-sm bg-[#aa915d] px-10 py-3 font-heading text-[12px] tracking-[0.2em] uppercase text-white">
-            Картаға өту
-          </a>
+        <motion.div {...fadeUp200(0.26)} className="mt-[18px] flex justify-center">
+          <motion.a
+            href={VENUE_MAP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-[37px] w-[204px] items-center justify-center rounded-[44px] bg-[#aa915d] no-underline"
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <span className="text-[11px] lowercase leading-[20px] text-white" style={{ ...kazFont, fontWeight: 200 }}>
+              картаға өту
+            </span>
+          </motion.a>
         </motion.div>
 
-        <motion.div {...fade(0.25)} className="flex justify-center my-6">
-          <Image src="/img/ornament.svg" alt="" width={50} height={25} />
+        <motion.div {...fadeUp200(0.34)} className="mt-[28px] flex justify-center">
+          <Image src="/img/ornament.svg" alt="" width={69} height={34} />
         </motion.div>
       </section>
 
