@@ -126,7 +126,7 @@ export default function InvitePage() {
   const heroDateText = `${EVENT_DATE.getFullYear()} ЖЫЛ, ${EVENT_DATE.getDate()} ${heroMonths[EVENT_DATE.getMonth()]}`;
 
   return (
-    <main className="mx-auto w-full max-w-[390px] bg-white">
+    <main className="mx-auto w-full bg-white">
 
       {/* ═══ HERO ═══ */}
       <section className="relative h-[670px] w-full overflow-hidden">
