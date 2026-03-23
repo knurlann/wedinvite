@@ -147,8 +147,8 @@ export default function InvitePage() {
         </div>
 
         <div className="absolute inset-x-0 bottom-[60px] flex flex-col items-center text-center text-white">
-          <p className="text-[30px] tabular-nums leading-[51px]" style={{ ...kaz, fontWeight: 600 }}>
-            {tl.map(v => String(v).padStart(2, "0")).join(" : ")}
+        <p className="text-[30px] tabular-nums leading-[51px]" style={{ ...kaz, fontWeight: 200 }}>
+        {tl.map(v => String(v).padStart(2, "0")).join(" : ")}
           </p>
           <div className="mt-[4px] flex w-[251px] justify-between text-[8px] leading-[12px]" style={{ ...kaz, fontWeight: 200 }}>
             <span>күн</span><span>cағат</span><span>минут</span><span>секунд</span>
