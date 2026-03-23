@@ -143,7 +143,7 @@ export default function InvitePage() {
           <p className="text-[13px] uppercase leading-[20px] tracking-[2px]" style={{ ...kaz, fontWeight: 200 }}>ТОЙҒА ШАҚЫРУ</p>
           <p className="mt-0 text-[38px] leading-[58px]" style={{ ...kaz, fontWeight: 900 }}>{GROOM} & {BRIDE}</p>
           <p className="mt-[12px] text-[10px] uppercase leading-[16px] tracking-[1.5px]" style={{ ...kaz, fontWeight: 200 }}>{heroDateText}</p>
-          <div className="relative mt-[50px] h-[66px] w-[65px]"><Image src="/img/logo.svg" alt="" fill className="object-contain" /></div>
+          <div className="relative h-[66px] w-[65px]" style={{ marginTop: '70px' }}><Image src="/img/logo.svg" alt="" fill className="object-contain" /></div>
         </div>
 
         <div className="absolute inset-x-0 bottom-[80px] flex items-end justify-center text-center text-white">
