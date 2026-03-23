@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useState, useRef, useCallback, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import {
@@ -55,12 +55,52 @@ export default function InvitePage() {
   const [answer, setAnswer] = useState("");
   const [formStatus, setFormStatus] = useState<Status>("idle");
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [audioReady, setAudioReady] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const tryPlay = useCallback(() => {
+    const a = audioRef.current;
+    if (!a || isPlaying) return;
+    a.play().then(() => setIsPlaying(true)).catch(() => {});
+  }, [isPlaying]);
+
+  const toggleMusic = useCallback(() => {
+    const a = audioRef.current;
+    if (!a) return;
+    if (isPlaying) { a.pause(); setIsPlaying(false); }
+    else { a.play().then(() => setIsPlaying(true)).catch(() => {}); }
+  }, [isPlaying]);
 
   useEffect(() => {
     setMounted(true);
     setTime(calcTimeLeft());
     const id = setInterval(() => setTime(calcTimeLeft()), 1000);
-    return () => clearInterval(id);
+
+    const audio = new Audio("/audio/toy-zhyry.mp3");
+    audio.loop = true;
+    audio.preload = "auto";
+    audioRef.current = audio;
+    setAudioReady(true);
+
+    const autoPlay = () => {
+      if (!audioRef.current) return;
+      audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+    };
+    const onInteraction = () => { autoPlay(); cleanup(); };
+    const onScroll = () => { setTimeout(autoPlay, 300); cleanup(); };
+    const cleanup = () => {
+      document.removeEventListener("click", onInteraction);
+      document.removeEventListener("touchstart", onInteraction);
+      window.removeEventListener("scroll", onScroll);
+    };
+    document.addEventListener("click", onInteraction, { once: true });
+    document.addEventListener("touchstart", onInteraction, { once: true });
+    window.addEventListener("scroll", onScroll, { once: true });
+
+    audio.play().then(() => setIsPlaying(true)).catch(() => {});
+
+    return () => { clearInterval(id); cleanup(); audio.pause(); audio.src = ""; };
   }, []);
 
   async function handleSubmit(e: FormEvent) {
@@ -115,14 +155,27 @@ export default function InvitePage() {
         />
         <div className="absolute inset-0 bg-[#110b02]/70" />
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="absolute left-[18px] top-[15px] h-[61px] w-[59px]"
-        >
-          <Image src="/img/gh.svg" alt="" fill className="object-contain" priority />
-        </motion.div>
+        {audioReady && (
+          <motion.button
+            type="button"
+            onClick={toggleMusic}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="absolute left-[18px] top-[15px] z-20 flex h-[61px] w-[59px] items-center justify-center"
+            aria-label={isPlaying ? "Музыканы тоқтату" : "Музыканы қосу"}
+          >
+            <Image src="/img/gh.svg" alt="" fill className="object-contain" priority />
+            <span
+              className={`absolute inset-0 flex items-center justify-center text-white text-[22px] transition-opacity ${
+                isPlaying ? "opacity-0" : "opacity-80"
+              }`}
+              aria-hidden="true"
+            >
+              ▶
+            </span>
+          </motion.button>
+        )}
 
         <motion.p
           initial={{ opacity: 0, scale: 2.5 }}
