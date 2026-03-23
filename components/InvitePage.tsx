@@ -133,24 +133,24 @@ export default function InvitePage() {
         <div className="absolute inset-0 bg-[#110b02]/70" />
 
         {audioReady && (
-          <motion.button type="button" onClick={toggleMusic} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }} className="absolute left-[18px] top-[15px] z-20 flex h-[61px] w-[59px] items-center justify-center" aria-label={isPlaying ? "Музыканы тоқтату" : "Музыканы қосу"}>
+          <motion.button type="button" onClick={toggleMusic} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }} className="absolute left-[18px] top-4 z-20 flex h-[61px] w-[59px] items-center justify-center" aria-label={isPlaying ? "Музыканы тоқтату" : "Музыканы қосу"}>
             <Image src="/img/gh.svg" alt="" fill className="object-contain" priority />
             {!isPlaying && <span className="absolute inset-0 flex items-center justify-center text-[22px] text-white/80" aria-hidden>▶</span>}
           </motion.button>
         )}
 
-        <div className="absolute inset-x-0 top-[63px] flex flex-col items-center text-center text-white">
+        <div className="absolute inset-x-0 top-16 sm:top-20 flex flex-col items-center text-center text-white">
           <p className="text-[10px] uppercase leading-[16px] tracking-[2px]" style={{ ...kaz, fontWeight: 200 }}>ТОЙҒА ШАҚЫРУ</p>
-          <p className="mt-[4px] text-[30px] leading-[47px]" style={{ ...kaz, fontWeight: 900 }}>{GROOM} & {BRIDE}</p>
-          <p className="mt-[12px] text-[8px] uppercase leading-[12px] tracking-[1.5px]" style={{ ...kaz, fontWeight: 200 }}>{heroDateText}</p>
-          <div className="relative mt-[24px] h-[66px] w-[65px]"><Image src="/img/logo.svg" alt="" fill className="object-contain" /></div>
+          <p className="mt-2 text-[30px] leading-[47px]" style={{ ...kaz, fontWeight: 900 }}>{GROOM} & {BRIDE}</p>
+          <p className="mt-4 text-[8px] uppercase leading-[12px] tracking-[1.5px]" style={{ ...kaz, fontWeight: 200 }}>{heroDateText}</p>
+          <div className="relative mt-6 h-[66px] w-[65px]"><Image src="/img/logo.svg" alt="" fill className="object-contain" /></div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-[60px] flex flex-col items-center text-center text-white">
-        <p className="text-[30px] tabular-nums leading-[51px]" style={{ ...kaz, fontWeight: 200 }}>
-        {tl.map(v => String(v).padStart(2, "0")).join(" : ")}
+        <div className="absolute inset-x-0 bottom-16 sm:bottom-20 flex flex-col items-center text-center text-white">
+          <p className="text-[30px] tabular-nums leading-[51px]" style={{ ...kaz, fontWeight: 200 }}>
+            {tl.map(v => String(v).padStart(2, "0")).join(" : ")}
           </p>
-          <div className="mt-[4px] flex w-[251px] justify-between text-[8px] leading-[12px]" style={{ ...kaz, fontWeight: 200 }}>
+          <div className="mt-2 flex w-[251px] justify-between text-[8px] leading-[12px]" style={{ ...kaz, fontWeight: 200 }}>
             <span>күн</span><span>cағат</span><span>минут</span><span>секунд</span>
           </div>
         </div>
@@ -161,34 +161,35 @@ export default function InvitePage() {
       </section>
 
       {/* ═══ INVITATION ═══ */}
-      <section className="bg-white px-[18%] pt-[12%] pb-[7%] text-center">
+      <section className="bg-white px-[18%] pt-16 pb-12 sm:pt-20 sm:pb-16 text-center">
         <motion.p {...fadeUp()} className="text-[14px] uppercase leading-[22px] text-black" style={{ ...kaz, fontWeight: 200 }}>
           ҚҰРМЕТТІ ҚОНАҚТАР!
         </motion.p>
 
-        <motion.p {...fadeUp(0.08)} className="mt-[17px] text-[11px] leading-[17px] text-black" style={{ ...kaz, fontWeight: 200 }}>
+        <motion.p {...fadeUp(0.08)} className="mt-6 text-[11px] leading-[17px] text-black" style={{ ...kaz, fontWeight: 200 }}>
           Сіздерді ұлымыз
         </motion.p>
 
-        <motion.p {...fadeUp(0.16)} className="mt-[6px] text-[34px] leading-[53px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>
+        <motion.p {...fadeUp(0.16)} className="mt-4 text-[34px] leading-[53px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>
           {GROOM} мен {BRIDE}
         </motion.p>
 
-        <motion.p {...fadeUp(0.24)} className="mx-auto mt-[18px] max-w-[80%] text-[11px] uppercase leading-[20px] text-black" style={{ ...kaz, fontWeight: 200 }}>
-          келініміздің шаңырақ көтеру тойына арналған салтанатты
-          <br />
-          Ақ дастарханымыздың қадірлі қонағы болуға шақырамыз!
+        <motion.p {...fadeUp(0.24)} className="mt-6 text-center text-[11px] uppercase leading-[20px] text-black" style={{ ...kaz, fontWeight: 200 }}>
+          келініміздің шаңырақ көтеру<br />
+          тойына арналған салтанатты<br />
+          Ақ дастарханымыздың қадірлі<br />
+          қонағы болуға шақырамыз!
         </motion.p>
 
-        <motion.div {...fadeUp(0.32)} className="mt-[20px] flex justify-center">
+        <motion.div {...fadeUp(0.32)} className="mt-8 flex justify-center">
           <Image src="/img/ornament.svg" alt="" width={69} height={34} />
         </motion.div>
 
-        <motion.p {...fadeUp(0.4)} className="mt-[21px] text-[11px] uppercase leading-[17px] text-black" style={{ ...kaz, fontWeight: 200 }}>
+        <motion.p {...fadeUp(0.4)} className="mt-8 text-[11px] uppercase leading-[17px] text-black" style={{ ...kaz, fontWeight: 200 }}>
           той иелері:
         </motion.p>
 
-        <motion.p {...fadeUp(0.48)} className="mt-0 text-[30px] leading-[47px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>
+        <motion.p {...fadeUp(0.48)} className="mt-2 text-[30px] leading-[47px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>
           {PARENTS_FATHER} - {PARENTS_MOTHER}
         </motion.p>
       </section>
@@ -200,28 +201,28 @@ export default function InvitePage() {
       </section>
 
       {/* ═══ DATE + TIME ═══ */}
-      <section className="bg-white px-[12%] pt-[10%] pb-[3%] text-center">
+      <section className="bg-white px-[12%] pt-14 pb-10 sm:pt-16 sm:pb-12 text-center">
         <motion.p {...fadeUp()} className="text-[33px] leading-[51px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>Той салтанаты:</motion.p>
-        <motion.p {...fadeUp(0.1)} className="mt-[4px] text-[12px] leading-[22px] text-black" style={{ ...kaz, fontWeight: 200 }}>
+        <motion.p {...fadeUp(0.1)} className="mt-2 text-[12px] leading-[22px] text-black" style={{ ...kaz, fontWeight: 200 }}>
           {EVENT_DATE_DISPLAY}<br />Басталу уақыты: <span className="underline">{EVENT_TIME}</span>
         </motion.p>
       </section>
 
       {/* ═══ CALENDAR ═══ */}
-      <section className="flex justify-center bg-white px-[14%] pt-[4%] pb-[8%]">
+      <section className="flex justify-center bg-white px-[14%] pt-10 pb-12 sm:pt-12 sm:pb-14">
         <motion.div {...fadeUp()} className="w-full max-w-[280px]" style={kaz}>
           <div className="text-center">
             <p className="text-[22px] font-bold uppercase tracking-[0.1em] text-black">{cal.name}</p>
             <p className="text-[22px] font-bold tracking-[0.05em] text-black">{cal.y}</p>
           </div>
-          <div className="mt-3 grid grid-cols-7 text-center text-[12px]">
-            {dayH.map(d => <span key={d} className="py-1.5 text-[10px] tracking-wider text-black/40">{d}</span>)}
+          <div className="mt-4 grid grid-cols-7 text-center text-[12px]">
+            {dayH.map(d => <span key={d} className="py-2 text-[10px] tracking-wider text-black/40">{d}</span>)}
             {Array.from({ length: cal.shift }).map((_, i) => <span key={`e${i}`} />)}
             {Array.from({ length: cal.days }).map((_, i) => {
               const day = i + 1;
               const hit = day === cal.td;
               return (
-                <span key={day} className={`relative py-1.5 ${hit ? "text-[15px] font-bold text-[#aa915d]" : "text-[14px] text-black/70"}`}>
+                <span key={day} className={`relative py-2 ${hit ? "text-[15px] font-bold text-[#aa915d]" : "text-[14px] text-black/70"}`}>
                   {hit && <span className="absolute inset-0 flex items-center justify-center"><span className="h-8 w-8 rounded-full border-2 border-[#aa915d]" /></span>}
                   <span className="relative z-10">{day}</span>
                 </span>
@@ -232,23 +233,23 @@ export default function InvitePage() {
       </section>
 
       {/* ═══ PLACE + MAP ═══ */}
-      <section className="bg-white px-[12%] pt-[5%] pb-[10%] text-center">
+      <section className="bg-white px-[12%] pt-12 pb-14 sm:pt-14 sm:pb-16 text-center">
         <motion.div {...fadeUp()} className="flex justify-center"><Image src="/img/ornament.svg" alt="" width={69} height={34} /></motion.div>
-        <motion.p {...fadeUp(0.1)} className="mt-[14px] text-[33px] leading-[51px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>Мекен - жайымыз:</motion.p>
-        <motion.p {...fadeUp(0.18)} className="mt-[14px] text-[11px] uppercase leading-[20px] text-black" style={{ ...kaz, fontWeight: 200 }}>
+        <motion.p {...fadeUp(0.1)} className="mt-4 text-[33px] leading-[51px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>Мекен - жайымыз:</motion.p>
+        <motion.p {...fadeUp(0.18)} className="mt-4 text-[11px] uppercase leading-[20px] text-black" style={{ ...kaz, fontWeight: 200 }}>
           {VENUE_CITY},<br />{VENUE_NAME}
         </motion.p>
-        <motion.div {...fadeUp(0.26)} className="mt-[20px] flex justify-center">
+        <motion.div {...fadeUp(0.26)} className="mt-8 flex justify-center">
           <motion.a href={VENUE_MAP_URL} target="_blank" rel="noopener noreferrer" className="flex h-[37px] w-[204px] items-center justify-center rounded-[44px] bg-[#aa915d] no-underline" animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>
             <span className="text-[11px] leading-[20px] text-white" style={{ ...kaz, fontWeight: 200 }}>картаға өту</span>
           </motion.a>
         </motion.div>
-        <motion.div {...fadeUp(0.34)} className="mt-[28px] flex justify-center"><Image src="/img/ornament.svg" alt="" width={69} height={34} /></motion.div>
+        <motion.div {...fadeUp(0.34)} className="mt-10 flex justify-center"><Image src="/img/ornament.svg" alt="" width={69} height={34} /></motion.div>
       </section>
 
       {/* ═══ TIMELINE ═══ */}
-      <section className="bg-white px-[6%] pt-[3%] pb-[10%] text-center">
-        <motion.p {...fadeUp()} className="mb-[32px] text-[33px] leading-[51px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>Той бағдарламасы:</motion.p>
+      <section className="bg-white px-[6%] pt-12 pb-14 sm:pt-14 sm:pb-16 text-center">
+        <motion.p {...fadeUp()} className="mb-8 text-[33px] leading-[51px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>Той бағдарламасы:</motion.p>
         <motion.div {...fadeUp(0.1)} className="relative mx-auto max-w-[300px]">
           <div className="absolute bottom-0 left-1/2 top-0 w-px -translate-x-1/2 bg-[#aa915d]/20" />
           {[
@@ -259,18 +260,18 @@ export default function InvitePage() {
             { time: "21:00", text: "Жас жұбайлардың вальсі", side: "left" as const },
             { time: "22:00", text: "Тойдың торты", side: "right" as const },
           ].map((item, i) => (
-            <div key={i} className="relative mb-5 flex items-center">
+            <div key={i} className="relative mb-6 flex items-center">
               <div className={`w-[46%] ${item.side === "left" ? "pr-4 text-right" : ""}`}>
                 {item.side === "left" && <>
                   <p className="text-[15px] font-bold text-[#aa915d]" style={kaz}>{item.time}</p>
-                  <p className="mt-0.5 text-[10px] uppercase leading-snug tracking-[0.06em] text-black" style={kaz}>{item.text}</p>
+                  <p className="mt-1 text-[10px] uppercase leading-snug tracking-[0.06em] text-black" style={kaz}>{item.text}</p>
                 </>}
               </div>
               <div className="flex w-[8%] justify-center"><span className="relative z-10 h-2.5 w-2.5 rounded-full bg-[#aa915d]" /></div>
               <div className={`w-[46%] ${item.side === "right" ? "pl-4" : ""}`}>
                 {item.side === "right" && <>
                   <p className="text-[15px] font-bold text-[#aa915d]" style={kaz}>{item.time}</p>
-                  <p className="mt-0.5 text-[10px] uppercase leading-snug tracking-[0.06em] text-black" style={kaz}>{item.text}</p>
+                  <p className="mt-1 text-[10px] uppercase leading-snug tracking-[0.06em] text-black" style={kaz}>{item.text}</p>
                 </>}
               </div>
             </div>
@@ -279,49 +280,51 @@ export default function InvitePage() {
       </section>
 
       {/* ═══ RSVP ═══ */}
-      <section className="bg-white px-[6%] pt-[8%] pb-[10%] text-center">
+      <section className="bg-white pt-14 pb-14 sm:pt-16 sm:pb-16 text-center">
         <motion.div {...fadeUp()} className="flex justify-center"><Image src="/img/ornament.svg" alt="" width={69} height={34} /></motion.div>
-        <motion.p {...fadeUp(0.1)} className="mt-[14px] text-[32px] leading-[50px] text-[#826547]" style={{ ...kaz, fontWeight: 900 }}>Сауалнама</motion.p>
-        <motion.p {...fadeUp(0.18)} className="mx-auto mt-[11px] max-w-[354px] text-[12px] leading-[20px] text-black" style={{ ...kaz, fontWeight: 200 }}>
+        <motion.p {...fadeUp(0.1)} className="mt-4 text-[32px] leading-[50px] text-[#826547]" style={{ ...kaz, fontWeight: 900 }}>Сауалнама</motion.p>
+        <motion.p {...fadeUp(0.18)} className="mt-4 text-[12px] leading-[20px] text-black" style={{ ...kaz, fontWeight: 200 }}>
           тойға қатысуыңызды<br />растауыңызды сұраймыз:
         </motion.p>
 
-        <motion.form {...fadeUp(0.26)} onSubmit={handleSubmit} className="mx-auto mt-[24px] w-full max-w-[313px] text-left">
-          <div className="mb-5">
-            <input type="text" value={name} onChange={e => setName(e.target.value)} required placeholder="Аты-Жөніңіз"
-              className="h-[50px] w-full border-0 border-b border-black bg-transparent px-0 text-[14px] leading-[1.33] text-black outline-none placeholder:uppercase placeholder:text-[#99928a]"
-              style={{ ...kaz, fontWeight: 200 }} />
-          </div>
-          <div className="mb-6">
-            <p className="mb-[5px] text-[10px] leading-[1.55] text-black" style={{ ...kaz, fontWeight: 200 }}>Жұбыңызбен келсеңіз, есімдеріңізді бірге жаза кетіңіз</p>
-            <div className="mt-[20px] flex flex-col gap-[14px]">
-              {RSVP_OPTIONS.map(opt => {
-                const sel = answer === opt.value;
-                return (
-                  <label key={opt.value} className={`flex cursor-pointer items-center rounded-md px-1 py-1 transition-colors ${sel ? "bg-[#aa915d]/10" : ""}`}>
-                    <input type="radio" name="rsvp" value={opt.value} checked={sel} onChange={e => setAnswer(e.target.value)} className="sr-only" />
-                    <span className={`mr-[10px] inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-all ${sel ? "border-[#aa915d] ring-2 ring-[#aa915d]/30" : "border-black/50"}`}>
-                      <span className={`h-[10px] w-[10px] rounded-full transition-transform ${sel ? "scale-100 bg-[#aa915d]" : "scale-0 bg-transparent"}`} />
-                    </span>
-                    <span className={`text-[10px] leading-[1.55] transition-colors ${sel ? "text-[#6b5630]" : "text-black"}`} style={{ ...kaz, fontWeight: 200 }}>{opt.label}</span>
-                  </label>
-                );
-              })}
+        <motion.form {...fadeUp(0.26)} onSubmit={handleSubmit} className="mt-8 flex flex-col items-center">
+          <div className="w-[313px] max-w-[calc(100%-32px)] text-left">
+            <div className="mb-6">
+              <input type="text" value={name} onChange={e => setName(e.target.value)} required placeholder="Аты-Жөніңіз"
+                className="h-[50px] w-full border-0 border-b border-black bg-transparent px-0 text-[14px] leading-[1.33] text-black outline-none placeholder:uppercase placeholder:text-[#99928a]"
+                style={{ ...kaz, fontWeight: 200 }} />
             </div>
+            <div className="mb-8">
+              <p className="mb-2 text-[10px] leading-[1.55] text-black" style={{ ...kaz, fontWeight: 200 }}>Жұбыңызбен келсеңіз, есімдеріңізді бірге жаза кетіңіз</p>
+              <div className="mt-6 flex flex-col gap-4">
+                {RSVP_OPTIONS.map(opt => {
+                  const sel = answer === opt.value;
+                  return (
+                    <label key={opt.value} className={`flex cursor-pointer items-center rounded-md px-1 py-1 transition-colors ${sel ? "bg-[#aa915d]/10" : ""}`}>
+                      <input type="radio" name="rsvp" value={opt.value} checked={sel} onChange={e => setAnswer(e.target.value)} className="sr-only" />
+                      <span className={`mr-[10px] inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-all ${sel ? "border-[#aa915d] ring-2 ring-[#aa915d]/30" : "border-black/50"}`}>
+                        <span className={`h-[10px] w-[10px] rounded-full transition-transform ${sel ? "scale-100 bg-[#aa915d]" : "scale-0 bg-transparent"}`} />
+                      </span>
+                      <span className={`text-[10px] leading-[1.55] transition-colors ${sel ? "text-[#6b5630]" : "text-black"}`} style={{ ...kaz, fontWeight: 200 }}>{opt.label}</span>
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <button type="submit" disabled={formStatus === "loading" || !name || !answer}
+                className="h-[40px] w-[251px] rounded-[1px] border border-[#aa915d] bg-[#aa915d] text-center text-[16px] leading-none text-white transition-opacity disabled:opacity-50"
+                style={{ ...kaz, fontWeight: 200 }}>
+                {formStatus === "loading" ? "Жіберілуде..." : "Жауапты жіберу"}
+              </button>
+            </div>
+            {formStatus === "error" && <p className="mt-4 text-center text-[12px] text-red-500" style={{ ...kaz, fontWeight: 200 }}>Қате пайда болды. Қайтадан көріңіз.</p>}
           </div>
-          <div className="flex justify-center">
-            <button type="submit" disabled={formStatus === "loading" || !name || !answer}
-              className="h-[40px] w-[251px] rounded-[1px] border border-[#aa915d] bg-[#aa915d] text-center text-[16px] leading-none text-white transition-opacity disabled:opacity-50"
-              style={{ ...kaz, fontWeight: 200 }}>
-              {formStatus === "loading" ? "Жіберілуде..." : "Жауапты жіберу"}
-            </button>
-          </div>
-          {formStatus === "error" && <p className="mt-3 text-center text-[12px] text-red-500" style={{ ...kaz, fontWeight: 200 }}>Қате пайда болды. Қайтадан көріңіз.</p>}
         </motion.form>
       </section>
 
       {/* ═══ FOOTER ═══ */}
-      <section className="bg-white px-[8%] pt-[8%] pb-[15%] text-center">
+      <section className="bg-white px-[8%] pt-14 pb-20 sm:pt-16 sm:pb-24 text-center">
         <motion.div {...fadeUp()}>
           <p className="text-[32px] leading-[1.55] text-[#826547]" style={{ ...kaz, fontWeight: 900 }}>
             Қуанышымызға<br />ортақ болыңыздар!
