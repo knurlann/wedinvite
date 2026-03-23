@@ -10,6 +10,22 @@
 
 @font-face {
   font-family: "kaz";
+  src: url("https://static.tildacdn.pro/tild3437-6161-4464-a137-666337656466/KZPF_Champion_Script.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "kazakh";
+  src: url("https://static.tildacdn.pro/tild3437-6161-4464-a137-666337656466/KZPF_Champion_Script.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "kaz";
   src: url("https://static.tildacdn.pro/tild3562-6633-4036-b962-366438393836/AsylbekM02Shelleykz_.woff") format("woff");
   font-weight: 900;
   font-style: normal;
@@ -42,7 +58,7 @@ body {
 
 @media (min-width: 480px) {
   body {
-    max-width: 430px;
+    max-width: 480px;
     margin: 0 auto;
     box-shadow: 0 0 30px rgba(0,0,0,0.1);
   }
