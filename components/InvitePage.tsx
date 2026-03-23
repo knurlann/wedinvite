@@ -146,12 +146,17 @@ export default function InvitePage() {
           <div className="relative mt-[50px] h-[66px] w-[65px]"><Image src="/img/logo.svg" alt="" fill className="object-contain" /></div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-[80px] flex flex-col items-center text-center text-white">
-          <p className="text-[38px] tabular-nums leading-[62px]" style={{ ...kaz, fontWeight: 200 }}>
-            {tl.map(v => String(v).padStart(2, "0")).join(" : ")}
-          </p>
-          <div className="mt-0 flex w-[310px] justify-between text-[10px] leading-[16px]" style={{ ...kaz, fontWeight: 200 }}>
-            <span>күн</span><span>cағат</span><span>минут</span><span>секунд</span>
+        <div className="absolute inset-x-0 bottom-[80px] flex items-end justify-center text-center text-white">
+          <div className="flex items-center" style={kaz}>
+            {tl.map((v, i) => (
+              <div key={i} className="flex items-center">
+                <div className="flex flex-col items-center">
+                  <span className="tabular-nums text-[38px] leading-[62px]" style={{ fontWeight: 200 }}>{String(v).padStart(2, "0")}</span>
+                  <span className="text-[10px] leading-[16px]" style={{ fontWeight: 200 }}>{["күн", "cағат", "минут", "секунд"][i]}</span>
+                </div>
+                {i < 3 && <span className="mx-[6px] self-start text-[38px] leading-[62px]" style={{ fontWeight: 200 }}>:</span>}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -161,7 +166,7 @@ export default function InvitePage() {
       </section>
 
       {/* ═══ INVITATION ═══ */}
-      <section className="bg-white px-[18%] pt-[47px] pb-[20px] text-center">
+      <section className="bg-white px-[18%] pb-[15px] text-center" style={{ paddingTop: '60px' }}>
         <motion.p {...fadeUp()} className="text-[18px] uppercase leading-[28px] text-black" style={{ ...kaz, fontWeight: 200 }}>
           ҚҰРМЕТТІ ҚОНАҚТАР!
         </motion.p>
@@ -189,7 +194,7 @@ export default function InvitePage() {
           той иелері:
         </motion.p>
 
-        <motion.p {...fadeUp(0.48)} className="mt-0 text-[38px] leading-[58px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>
+        <motion.p {...fadeUp(0.48)} className="text-[38px] leading-[58px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900, marginBottom: '30px' }}>
           {PARENTS_FATHER} - {PARENTS_MOTHER}
         </motion.p>
       </section>
@@ -201,9 +206,9 @@ export default function InvitePage() {
       </section>
 
       {/* ═══ DATE + TIME ═══ */}
-      <section className="bg-white px-[12%] pt-[21px] pb-[20px] text-center">
+      <section className="bg-white px-[12%] pt-[28px] pb-[20px] text-center">
         <motion.p {...fadeUp()} className="text-[40px] leading-[62px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>Той салтанаты:</motion.p>
-        <motion.p {...fadeUp(0.1)} className="mt-[3px] text-[15px] leading-[27px] text-black" style={{ ...kaz, fontWeight: 200 }}>
+        <motion.p {...fadeUp(0.1)} className="mt-[3px] text-[15px] leading-[27px] text-black" style={{ ...kaz, fontWeight: 200, marginBottom: '30px' }}>
           {EVENT_DATE_DISPLAY}<br />Басталу уақыты: <span className="underline">{EVENT_TIME}</span>
         </motion.p>
       </section>
@@ -211,11 +216,7 @@ export default function InvitePage() {
       {/* ═══ CALENDAR ═══ */}
       <section className="flex justify-center bg-white px-[14%] pt-[20px] pb-[16px]">
         <motion.div {...fadeUp()} className="w-full max-w-[280px]" style={kaz}>
-          <div className="text-center">
-            <p className="text-[26px] font-bold uppercase tracking-[0.1em] text-black">{cal.name}</p>
-            <p className="text-[26px] font-bold tracking-[0.05em] text-black">{cal.y}</p>
-          </div>
-          <div className="mt-3 grid grid-cols-7 text-center text-[14px]">
+          <div className="grid grid-cols-7 text-center text-[14px]">
             {dayH.map(d => <span key={d} className="py-1.5 text-[13px] tracking-wider text-black/40">{d}</span>)}
             {Array.from({ length: cal.shift }).map((_, i) => <span key={`e${i}`} />)}
             {Array.from({ length: cal.days }).map((_, i) => {
@@ -244,11 +245,11 @@ export default function InvitePage() {
             <span className="text-[14px] leading-[25px] text-white" style={{ ...kaz, fontWeight: 200 }}>картаға өту</span>
           </motion.a>
         </motion.div>
-        <motion.div {...fadeUp(0.34)} className="mt-[48px] flex justify-center"><Image src="/img/ornament.svg" alt="" width={69} height={34} /></motion.div>
+        <motion.div {...fadeUp(0.34)} className="mt-[32px] flex justify-center"><Image src="/img/ornament.svg" alt="" width={69} height={34} /></motion.div>
       </section>
 
       {/* ═══ TIMELINE ═══ */}
-      <section className="flex flex-col items-center bg-white pt-0 pb-[40px]">
+      <section className="flex flex-col items-center bg-white pt-[13px] pb-[40px]">
         <motion.p {...fadeUp()} className="mb-[16px] text-[40px] leading-[62px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>Той бағдарламасы:</motion.p>
         <motion.div {...fadeUp(0.1)} className="relative w-[320px] max-w-[90%]">
           <div className="absolute bottom-0 left-1/2 top-0 w-px -translate-x-1/2 bg-[#aa915d]/20" />
@@ -280,7 +281,7 @@ export default function InvitePage() {
       </section>
 
       {/* ═══ RSVP ═══ */}
-      <section className="bg-white pt-[38px] pb-[32px] text-center">
+      <section className="bg-white pt-[32px] pb-[27px] text-center">
         <motion.div {...fadeUp()} className="flex justify-center"><Image src="/img/ornament.svg" alt="" width={69} height={34} /></motion.div>
         <motion.p {...fadeUp(0.1)} className="mt-[28px] text-[38px] leading-[60px] text-[#826547]" style={{ ...kaz, fontWeight: 900 }}>Сауалнама</motion.p>
         <motion.p {...fadeUp(0.18)} className="mt-[20px] text-[15px] leading-[25px] text-black" style={{ ...kaz, fontWeight: 200 }}>
@@ -294,9 +295,9 @@ export default function InvitePage() {
                 className="h-[50px] w-full border-0 border-b border-black bg-transparent px-0 text-[17px] leading-[1.33] text-black outline-none placeholder:uppercase placeholder:text-[#99928a]"
                 style={{ ...kaz, fontWeight: 200 }} />
             </div>
-            <div className="mb-[24px]">
-              <p className="mb-[5px] text-[13px] leading-[1.55] text-black" style={{ ...kaz, fontWeight: 200 }}>Жұбыңызбен келсеңіз, есімдеріңізді бірге жаза кетіңіз</p>
-              <div className="mt-[20px] flex flex-col gap-[14px]">
+            <div>
+              <p style={{ fontFamily: "'kaz', Arial, sans-serif", fontWeight: 200, fontSize: '13px', lineHeight: 1.55, color: '#000', marginBottom: '30px' }}>Жұбыңызбен келсеңіз, есімдеріңізді бірге жаза кетіңіз</p>
+              <div className="flex flex-col gap-[14px]">
                 {RSVP_OPTIONS.map(opt => {
                   const sel = answer === opt.value;
                   return (
@@ -311,7 +312,7 @@ export default function InvitePage() {
                 })}
               </div>
             </div>
-            <div className="flex justify-center">
+            <div style={{ marginTop: '30px' }} className="flex justify-center">
               <button type="submit" disabled={formStatus === "loading" || !name || !answer}
                 className="h-[46px] w-[280px] rounded-[1px] border border-[#aa915d] bg-[#aa915d] text-center text-[18px] leading-none text-white transition-opacity disabled:opacity-50"
                 style={{ ...kaz, fontWeight: 200 }}>
@@ -324,7 +325,7 @@ export default function InvitePage() {
       </section>
 
       {/* ═══ FOOTER ═══ */}
-      <section className="bg-white px-[8%] pt-[32px] pb-[97px] text-center">
+      <section className="bg-white px-[8%] pt-[32px] pb-[67px] text-center">
         <motion.div {...fadeUp()}>
           <p className="text-[38px] leading-[1.55] text-[#826547]" style={{ ...kaz, fontWeight: 900 }}>
             Қуанышымызға<br />ортақ болыңыздар!
