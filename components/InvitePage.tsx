@@ -248,9 +248,9 @@ export default function InvitePage() {
       </section>
 
       {/* ═══ TIMELINE ═══ */}
-      <section className="bg-white px-[6%] pt-0 pb-[40px] text-center">
+      <section className="flex flex-col items-center bg-white pt-0 pb-[40px]">
         <motion.p {...fadeUp()} className="mb-[16px] text-[40px] leading-[62px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>Той бағдарламасы:</motion.p>
-        <motion.div {...fadeUp(0.1)} className="relative mx-auto max-w-[300px]">
+        <motion.div {...fadeUp(0.1)} className="relative w-[320px] max-w-[90%]">
           <div className="absolute bottom-0 left-1/2 top-0 w-px -translate-x-1/2 bg-[#aa915d]/20" />
           {[
             { time: "16:00", text: "Қонақтардың жиналуы", side: "left" as const },
