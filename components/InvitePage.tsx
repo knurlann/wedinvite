@@ -154,7 +154,7 @@ export default function InvitePage() {
                   <span className="tabular-nums text-[38px] leading-[62px]" style={{ fontWeight: 200 }}>{String(v).padStart(2, "0")}</span>
                   <span className="text-[10px] leading-[16px]" style={{ fontWeight: 200 }}>{["күн", "cағат", "минут", "секунд"][i]}</span>
                 </div>
-                {i < 3 && <span className="mx-[6px] self-start text-[38px] leading-[62px]" style={{ fontWeight: 200 }}>:</span>}
+                {i < 3 && <span className="self-start text-[38px] leading-[62px]" style={{ fontWeight: 200, marginLeft: '16px', marginRight: '16px' }}>:</span>}
               </div>
             ))}
           </div>
