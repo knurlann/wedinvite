@@ -147,11 +147,7 @@ export default function InvitePage() {
         </div>
 
         <div className="absolute inset-x-0 bottom-[60px] flex flex-col items-center text-center text-white">
-<<<<<<< Current (Your changes)
           <p className="text-[30px] tabular-nums leading-[51px]" style={{ ...kaz, fontWeight: 600 }}>
-=======
-          <p className="text-[30px] leading-[1.7] tracking-[0px] whitespace-normal" style={{ ...kazakh, fontWeight: 600 }}>
->>>>>>> Incoming (Background Agent changes)
             {tl.map(v => String(v).padStart(2, "0")).join(" : ")}
           </p>
           <div className="mt-[4px] flex w-[251px] justify-between text-[8px] leading-[12px]" style={{ ...kaz, fontWeight: 200 }}>
