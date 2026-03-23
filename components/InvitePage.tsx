@@ -129,7 +129,7 @@ export default function InvitePage() {
 
       {/* ═══ HERO ═══ */}
       <section className="relative aspect-[430/739] w-full overflow-hidden">
-        <div className="absolute inset-0" style={{ backgroundImage: "url('/img/hero-bg.png')", backgroundPosition: "26% 0%", backgroundSize: "115%", backgroundRepeat: "no-repeat" }} />
+        <div className="absolute inset-0" style={{ backgroundImage: "url('/img/hero-bg.png')", backgroundPosition: "center 20%", backgroundSize: "cover", backgroundRepeat: "no-repeat" }} />
         <div className="absolute inset-0 bg-[#110b02]/70" />
 
         {audioReady && (
@@ -172,15 +172,14 @@ export default function InvitePage() {
         </motion.p>
 
         <motion.p {...fadeUp(0.08)} className="mt-[16px] text-[14px] leading-[22px] text-black" style={{ ...kaz, fontWeight: 200 }}>
-          Сіздерді ұлымыз
+          Сіздерді
         </motion.p>
-
         <motion.p {...fadeUp(0.16)} className="mt-[7px] text-[42px] leading-[64px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>
           {GROOM} мен {BRIDE}
         </motion.p>
 
         <motion.p {...fadeUp(0.24)} className="mt-0 text-center text-[14px] uppercase leading-[25px] text-black" style={{ ...kaz, fontWeight: 200 }}>
-          келініміздің шаңырақ көтеру<br />
+          балаларымыздың шаңырақ көтеру<br />
           тойына арналған салтанатты<br />
           Ақ дастарханымыздың қадірлі<br />
           қонағы болуға шақырамыз!
@@ -254,12 +253,8 @@ export default function InvitePage() {
         <motion.div {...fadeUp(0.1)} className="relative w-[320px] max-w-[90%]">
           <div className="absolute bottom-0 left-1/2 top-0 w-px -translate-x-1/2 bg-[#aa915d]/20" />
           {[
-            { time: "16:00", text: "Қонақтардың жиналуы", side: "left" as const },
-            { time: "16:30", text: "Фотосессия, фуршет", side: "right" as const },
-            { time: "17:00", text: "Тойдың басталуы, беташар", side: "left" as const },
-            { time: "17:30", text: "Құдалардың қарсы алу", side: "right" as const },
-            { time: "21:00", text: "Жас жұбайлардың вальсі", side: "left" as const },
-            { time: "22:00", text: "Тойдың торты", side: "right" as const },
+            { time: "18:00", text: "Тойдың басталуы, беташар", side: "left" as const },
+            { time: "18:30", text: "Құдалардың қарсы алу", side: "right" as const },
           ].map((item, i) => (
             <div key={i} className="relative mb-5 flex items-center">
               <div className={`w-[46%] ${item.side === "left" ? "pr-4 text-right" : ""}`}>
