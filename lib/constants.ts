@@ -11,7 +11,7 @@ export const EVENT_TIME = "18:00";
 export const VENUE_NAME = "«Самир 3» мейрамханасы";
 export const VENUE_CITY = "Алматы қаласы";
 export const VENUE_MAP_URL =
-  "https://go.2gis.com/wGfI2";
+  "https://2gis.kz/almaty/search/samir%203/firm/70000001101564286/76.801364%2C43.177045?m=76.802147%2C43.176542%2F18.94";
 
 export const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxmhDRMPP6gn4yQKLgLSTIg06OGf7iu1exAhZ0aOAn91vf52noVEtgZMRyXDXIxLP4QEQ/exec";

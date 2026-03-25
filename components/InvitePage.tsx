@@ -43,6 +43,7 @@ type Status = "idle" | "loading" | "success" | "error";
 export default function InvitePage() {
   const [time, setTime] = useState([0,0,0,0]);
   const [mounted, setMounted] = useState(false);
+  const [opened, setOpened] = useState(false);
   const [name, setName] = useState("");
   const [answer, setAnswer] = useState("");
   const [formStatus, setFormStatus] = useState<Status>("idle");
@@ -63,30 +64,25 @@ export default function InvitePage() {
     setTime(calcTimeLeft());
     const id = setInterval(() => setTime(calcTimeLeft()), 1000);
 
-    const audio = new Audio("/audio/toy-zhyry.mp3");
+    const audio = new Audio("/audio/MOLDANAZAR_-_Mahabbatym_(SkySound.cc).mp3");
     audio.loop = true;
     audio.preload = "auto";
+    audio.currentTime = 27;
+    audio.addEventListener("seeked", () => {}, { once: true });
+    audio.addEventListener("timeupdate", () => {
+      if (audio.currentTime < 27 && !audio.paused) audio.currentTime = 27;
+    });
     audioRef.current = audio;
     setAudioReady(true);
 
-    const autoPlay = () => {
-      if (!audioRef.current) return;
-      audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
-    };
-    const onInteraction = () => { autoPlay(); cleanup(); };
-    const onScroll = () => { setTimeout(autoPlay, 300); cleanup(); };
-    const cleanup = () => {
-      document.removeEventListener("click", onInteraction);
-      document.removeEventListener("touchstart", onInteraction);
-      window.removeEventListener("scroll", onScroll);
-    };
-    document.addEventListener("click", onInteraction, { once: true });
-    document.addEventListener("touchstart", onInteraction, { once: true });
-    window.addEventListener("scroll", onScroll, { once: true });
-    audio.play().then(() => setIsPlaying(true)).catch(() => {});
-
-    return () => { clearInterval(id); cleanup(); audio.pause(); audio.src = ""; };
+    return () => { clearInterval(id); audio.pause(); audio.src = ""; };
   }, []);
+
+  function handleOpen() {
+    setOpened(true);
+    const a = audioRef.current;
+    if (a) a.play().then(() => setIsPlaying(true)).catch(() => {});
+  }
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -124,6 +120,28 @@ export default function InvitePage() {
   const heroMonths = ["ҚАҢТАР","АҚПАН","НАУРЫЗ","СӘУІР","МАМЫР","МАУСЫМ","ШІЛДЕ","ТАМЫЗ","ҚЫРКҮЙЕК","ҚАЗАН","ҚАРАША","ЖЕЛТОҚСАН"];
   const heroDateText = `${EVENT_DATE.getFullYear()} ЖЫЛ, ${EVENT_DATE.getDate()} ${heroMonths[EVENT_DATE.getMonth()]}`;
 
+  if (!opened) {
+    return (
+      <div className="fixed inset-0 z-[999999] flex flex-col items-center justify-center bg-[#110b02] text-white" style={kaz}>
+        <div className="absolute inset-0" style={{ backgroundImage: "url('/img/hero-bg.png')", backgroundPosition: "center", backgroundSize: "cover", opacity: 0.35 }} />
+        <div className="relative z-10 flex flex-col items-center text-center px-6">
+          <p className="text-[12px] uppercase tracking-[3px] leading-[20px]" style={{ fontWeight: 200 }}>ТОЙҒА ШАҚЫРУ</p>
+          <p className="mt-[12px] text-[42px] leading-[58px]" style={{ fontWeight: 900 }}>{GROOM} & {BRIDE}</p>
+          <motion.button
+            type="button"
+            onClick={handleOpen}
+            className="mt-[50px] h-[50px] w-[220px] rounded-full border-2 border-[#aa915d] bg-transparent text-[15px] uppercase tracking-[2px] text-[#aa915d] transition-colors hover:bg-[#aa915d] hover:text-white"
+            style={{ fontWeight: 200 }}
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            Ашу
+          </motion.button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <main className="mx-auto w-full bg-white">
 
@@ -135,18 +153,20 @@ export default function InvitePage() {
         {audioReady && (
           <motion.button type="button" onClick={toggleMusic} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }} className="absolute left-[18px] top-[16px] z-20 flex h-[61px] w-[59px] items-center justify-center" aria-label={isPlaying ? "Музыканы тоқтату" : "Музыканы қосу"}>
             <Image src="/img/gh.svg" alt="" fill className="object-contain" priority />
-            {!isPlaying && <span className="absolute inset-0 flex items-center justify-center text-[22px] text-white/80" aria-hidden>▶</span>}
+            <span className="absolute inset-0 flex items-center justify-center text-[22px] text-white/80" aria-hidden>{isPlaying ? "❚❚" : "▶"}</span>
           </motion.button>
         )}
 
-        <div className="absolute inset-x-0 top-[70px] flex flex-col items-center text-center text-white">
+        <div className="absolute inset-x-0 top-0 h-[35%] pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)' }} />
+        <div className="absolute inset-x-0 top-[70px] flex flex-col items-center text-center text-white" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.6)' }}>
           <p className="text-[13px] uppercase leading-[20px] tracking-[2px]" style={{ ...kaz, fontWeight: 200 }}>ТОЙҒА ШАҚЫРУ</p>
           <p className="mt-0 text-[38px] leading-[58px]" style={{ ...kaz, fontWeight: 900 }}>{GROOM} & {BRIDE}</p>
           <p className="mt-[12px] text-[10px] uppercase leading-[16px] tracking-[1.5px]" style={{ ...kaz, fontWeight: 200 }}>{heroDateText}</p>
           {/* <div className="relative h-[66px] w-[65px]" style={{ marginTop: '70px' }}><Image src="/img/logo.svg" alt="" fill className="object-contain" /></div> */}
         </div>
 
-        <div className="absolute inset-x-0 bottom-[80px] flex items-end justify-center text-center text-white">
+        <div className="absolute inset-x-0 bottom-0 h-[45%] pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)' }} />
+        <div className="absolute inset-x-0 bottom-[80px] flex items-end justify-center text-center text-white" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.6)' }}>
           <div className="flex items-center" style={kaz}>
             {tl.map((v, i) => (
               <div key={i} className="flex items-center">
@@ -179,8 +199,8 @@ export default function InvitePage() {
         </motion.p>
 
         <motion.p {...fadeUp(0.24)} className="mt-0 text-center text-[14px] uppercase leading-[25px] text-black" style={{ ...kaz, fontWeight: 200 }}>
-          ұлымыз бен келініміздің шаңырақ көтеру<br />
-          тойына арналған салтанатты<br />
+          ұлымыз бен келініміздің шаңырақ <br />
+          көтеру тойына арналған салтанатты<br />
           Ақ дастарханымыздың қадірлі<br />
           қонағы болуға шақырамыз!
         </motion.p>
