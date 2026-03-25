@@ -345,16 +345,18 @@ export default function InvitePage() {
 
       {/* ═══ SUCCESS POPUP ═══ */}
       {showSuccessPopup && (
-        <div className="fixed inset-0 z-[1000000] bg-black/80" onClick={closeSuccessPopup} role="button" tabIndex={0} onKeyDown={e => { if (e.key === "Escape" || e.key === "Enter") closeSuccessPopup(); }}>
-          <div className="absolute left-1/2 top-1/2 w-[350px] max-w-[calc(100vw-40px)] -translate-x-1/2 -translate-y-1/2 rounded-[10px] bg-white px-[40px] pt-[50px] pb-[50px] text-center" onClick={e => e.stopPropagation()}>
-            <button type="button" onClick={closeSuccessPopup} className="absolute right-[14px] top-[14px] text-black" aria-label="Жабу">
+        <div className="fixed inset-0 z-[1000000] flex items-center justify-center bg-black/80 px-5" onClick={closeSuccessPopup} role="button" tabIndex={0} onKeyDown={e => { if (e.key === "Escape" || e.key === "Enter") closeSuccessPopup(); }}>
+          <div className="relative w-full max-w-[350px] rounded-[10px] bg-white px-8 py-12 text-center" onClick={e => e.stopPropagation()}>
+            <button type="button" onClick={closeSuccessPopup} className="absolute right-4 top-4 text-black" aria-label="Жабу">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 23 23" fill="currentColor"><path d="M0 1.41L1.4 0l21.22 21.21-1.41 1.42z" /><path d="M21.21 0l1.42 1.4L1.4 22.63 0 21.21z" /></svg>
             </button>
-            <svg className="mx-auto mb-[15px]" width="50" height="50" viewBox="0 0 50 50" fill="#62C584" aria-hidden="true">
-              <path d="M25.1 49.28A24.64 24.64 0 0 1 .5 24.68 24.64 24.64 0 0 1 25.1.07a24.64 24.64 0 0 1 24.6 24.6 24.64 24.64 0 0 1-24.6 24.61zm0-47.45A22.87 22.87 0 0 0 2.26 24.68 22.87 22.87 0 0 0 25.1 47.52a22.87 22.87 0 0 0 22.84-22.84A22.87 22.87 0 0 0 25.1 1.83z" />
-              <path d="M22.84 30.53l-4.44-4.45a.88.88 0 1 1 1.24-1.24l3.2 3.2 8.89-8.9a.88.88 0 1 1 1.25 1.26L22.84 30.53z" />
-            </svg>
-            <p className="text-[24px] font-bold text-black" style={kaz}>Жауабыңызға рақмет!</p>
+            <div className="flex justify-center">
+              <svg width="60" height="60" viewBox="0 0 50 50" fill="#62C584" aria-hidden="true">
+                <path d="M25.1 49.28A24.64 24.64 0 0 1 .5 24.68 24.64 24.64 0 0 1 25.1.07a24.64 24.64 0 0 1 24.6 24.6 24.64 24.64 0 0 1-24.6 24.61zm0-47.45A22.87 22.87 0 0 0 2.26 24.68 22.87 22.87 0 0 0 25.1 47.52a22.87 22.87 0 0 0 22.84-22.84A22.87 22.87 0 0 0 25.1 1.83z" />
+                <path d="M22.84 30.53l-4.44-4.45a.88.88 0 1 1 1.24-1.24l3.2 3.2 8.89-8.9a.88.88 0 1 1 1.25 1.26L22.84 30.53z" />
+              </svg>
+            </div>
+            <p className="mt-5 text-black" style={{ ...kaz, fontWeight: 900, fontSize: 'clamp(20px, 5.5vw, 24px)', lineHeight: 1.4 }}>Жауабыңызға рақмет!</p>
           </div>
         </div>
       )}
