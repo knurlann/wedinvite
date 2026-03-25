@@ -67,12 +67,6 @@ export default function InvitePage() {
     const audio = new Audio("/audio/MOLDANAZAR_-_Mahabbatym_(SkySound.cc).mp3");
     audio.loop = true;
     audio.preload = "auto";
-    audio.addEventListener("playing", function setStart() {
-      if (audio.currentTime < 27) audio.currentTime = 27;
-    }, { once: true });
-    audio.addEventListener("seeked", () => {
-      if (audio.currentTime < 1) audio.currentTime = 27;
-    });
     audioRef.current = audio;
     setAudioReady(true);
 
@@ -82,17 +76,7 @@ export default function InvitePage() {
   function handleOpen() {
     setOpened(true);
     const a = audioRef.current;
-    if (!a) return;
-    const startPlayback = () => {
-      a.currentTime = 27;
-      a.play().then(() => setIsPlaying(true)).catch(() => {});
-    };
-    if (a.readyState >= 1) {
-      startPlayback();
-    } else {
-      a.addEventListener("loadedmetadata", startPlayback, { once: true });
-      a.load();
-    }
+    if (a) a.play().then(() => setIsPlaying(true)).catch(() => {});
   }
 
   async function handleSubmit(e: FormEvent) {
