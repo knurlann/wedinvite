@@ -130,7 +130,7 @@ export default function InvitePage() {
       {/* ═══ HERO ═══ */}
       <section className="relative aspect-[430/739] w-full overflow-hidden">
         <div className="absolute inset-0" style={{ backgroundImage: "url('/img/hero-bg.png')", backgroundPosition: "center 20%", backgroundSize: "cover", backgroundRepeat: "no-repeat" }} />
-        <div className="absolute inset-0 bg-[#110b02]/70" />
+        {/* <div className="absolute inset-0 bg-[#110b02]/70" /> */}
 
         {audioReady && (
           <motion.button type="button" onClick={toggleMusic} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }} className="absolute left-[18px] top-[16px] z-20 flex h-[61px] w-[59px] items-center justify-center" aria-label={isPlaying ? "Музыканы тоқтату" : "Музыканы қосу"}>
@@ -143,7 +143,7 @@ export default function InvitePage() {
           <p className="text-[13px] uppercase leading-[20px] tracking-[2px]" style={{ ...kaz, fontWeight: 200 }}>ТОЙҒА ШАҚЫРУ</p>
           <p className="mt-0 text-[38px] leading-[58px]" style={{ ...kaz, fontWeight: 900 }}>{GROOM} & {BRIDE}</p>
           <p className="mt-[12px] text-[10px] uppercase leading-[16px] tracking-[1.5px]" style={{ ...kaz, fontWeight: 200 }}>{heroDateText}</p>
-          <div className="relative h-[66px] w-[65px]" style={{ marginTop: '70px' }}><Image src="/img/logo.svg" alt="" fill className="object-contain" /></div>
+          {/* <div className="relative h-[66px] w-[65px]" style={{ marginTop: '70px' }}><Image src="/img/logo.svg" alt="" fill className="object-contain" /></div> */}
         </div>
 
         <div className="absolute inset-x-0 bottom-[80px] flex items-end justify-center text-center text-white">
@@ -179,7 +179,7 @@ export default function InvitePage() {
         </motion.p>
 
         <motion.p {...fadeUp(0.24)} className="mt-0 text-center text-[14px] uppercase leading-[25px] text-black" style={{ ...kaz, fontWeight: 200 }}>
-          балаларымыздың шаңырақ көтеру<br />
+          ұлымыз бен келініміздің шаңырақ көтеру<br />
           тойына арналған салтанатты<br />
           Ақ дастарханымыздың қадірлі<br />
           қонағы болуға шақырамыз!
@@ -200,8 +200,8 @@ export default function InvitePage() {
 
       {/* ═══ VENUE PHOTO ═══ */}
       <section className="relative aspect-[430/276] w-full">
-        <Image src="/img/venue-photo.jpg" alt="" fill className="object-cover" />
-        <div className="absolute inset-0 bg-black/40" />
+        <Image src="/img/venue-photo.png" alt="" fill className="object-cover" />
+        {/* <div className="absolute inset-0 bg-black/40" /> */}
       </section>
 
       {/* ═══ DATE + TIME ═══ */}
