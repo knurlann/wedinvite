@@ -187,17 +187,17 @@ export default function InvitePage() {
         </motion.p>
 
         <motion.p {...fadeUp(0.08)} className="mt-[16px] text-[14px] leading-[22px] text-black" style={{ ...kaz, fontWeight: 200 }}>
-          Сіздерді
+          Сіздерді аяулы қызымыз
         </motion.p>
         <motion.p {...fadeUp(0.16)} className="mt-[7px] text-[42px] leading-[64px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>
-          {GROOM} мен {BRIDE}
+          Тоқжанның
         </motion.p>
 
         <motion.p {...fadeUp(0.24)} className="mt-0 text-center text-[14px] uppercase leading-[25px] text-black" style={{ ...kaz, fontWeight: 200 }}>
-          ұлымыз бен келініміздің шаңырақ <br />
-          көтеру тойына арналған салтанатты<br />
-          Ақ дастарханымыздың қадірлі<br />
-          қонағы болуға шақырамыз!
+          қыз ұзату тойына арналған<br />
+          салтанатты ақ дастарханымыздың  <br />
+          қадірлі қонағы болуға шақырамыз!<br />
+          <br />
         </motion.p>
 
         <motion.div {...fadeUp(0.32)} className="mt-[20px] flex justify-center">
@@ -209,7 +209,7 @@ export default function InvitePage() {
         </motion.p>
 
         <motion.p {...fadeUp(0.48)} className="text-[38px] leading-[58px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900, marginBottom: '30px' }}>
-          {PARENTS_FATHER} - {PARENTS_MOTHER}
+        Тимур- Гаухар
         </motion.p>
       </section>
 
@@ -259,40 +259,15 @@ export default function InvitePage() {
             <span className="text-[14px] leading-[25px] text-white" style={{ ...kaz, fontWeight: 200 }}>картаға өту</span>
           </motion.a>
         </motion.div>
+        <br />
         <motion.div {...fadeUp(0.34)} className="mt-[32px] flex justify-center"><Image src="/img/ornament.svg" alt="" width={69} height={34} /></motion.div>
       </section>
 
-      {/* ═══ TIMELINE ═══ */}
-      <section className="flex flex-col items-center bg-white pt-[13px] pb-[40px]">
-        <motion.p {...fadeUp()} className="mb-[16px] text-[40px] leading-[62px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900 }}>Той бағдарламасы:</motion.p>
-        <motion.div {...fadeUp(0.1)} className="relative w-[320px] max-w-[90%]">
-          <div className="absolute bottom-0 left-1/2 top-0 w-px -translate-x-1/2 bg-[#aa915d]/20" />
-          {[
-            { time: "18:00", text: "Тойдың басталуы, беташар", side: "left" as const },
-            { time: "18:30", text: "Құдалардың қарсы алу", side: "right" as const },
-          ].map((item, i) => (
-            <div key={i} className="relative mb-5 flex items-center">
-              <div className={`w-[46%] ${item.side === "left" ? "pr-4 text-right" : ""}`}>
-                {item.side === "left" && <>
-                  <p className="text-[18px] font-bold text-[#aa915d]" style={kaz}>{item.time}</p>
-                  <p className="mt-0.5 text-[13px] uppercase leading-snug tracking-[0.06em] text-black" style={kaz}>{item.text}</p>
-                </>}
-              </div>
-              <div className="flex w-[8%] justify-center"><span className="relative z-10 h-2.5 w-2.5 rounded-full bg-[#aa915d]" /></div>
-              <div className={`w-[46%] ${item.side === "right" ? "pl-4" : ""}`}>
-                {item.side === "right" && <>
-                  <p className="text-[18px] font-bold text-[#aa915d]" style={kaz}>{item.time}</p>
-                  <p className="mt-0.5 text-[13px] uppercase leading-snug tracking-[0.06em] text-black" style={kaz}>{item.text}</p>
-                </>}
-              </div>
-            </div>
-          ))}
-        </motion.div>
-      </section>
+ 
 
       {/* ═══ RSVP ═══ */}
       <section className="bg-white pt-[32px] pb-[27px] text-center">
-        <motion.div {...fadeUp()} className="flex justify-center"><Image src="/img/ornament.svg" alt="" width={69} height={34} /></motion.div>
+        {/* <motion.div {...fadeUp()} className="flex justify-center"><Image src="/img/ornament.svg" alt="" width={69} height={34} /></motion.div> */}
         <motion.p {...fadeUp(0.1)} className="mt-[28px] text-[38px] leading-[60px] text-[#826547]" style={{ ...kaz, fontWeight: 900 }}>Сауалнама</motion.p>
         <motion.p {...fadeUp(0.18)} className="mt-[20px] text-[15px] leading-[25px] text-black" style={{ ...kaz, fontWeight: 200 }}>
           тойға қатысуыңызды<br />растауыңызды сұраймыз:
@@ -359,7 +334,10 @@ export default function InvitePage() {
             <p className="mt-5 text-black" style={{ ...kaz, fontWeight: 900, fontSize: 'clamp(20px, 5.5vw, 24px)', lineHeight: 1.4 }}>Жауабыңызға рақмет!</p>
           </div>
         </div>
+        
       )}
+              <br />
+
     </main>
   );
 }
