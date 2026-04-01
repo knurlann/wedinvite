@@ -25,7 +25,7 @@ export default function Invitation() {
         className="text-center"
       >
         <p className="font-heading text-gold text-lg tracking-wider mb-6">
-          Сіздерді ұлымыз
+          Сіздерді
         </p>
 
         <h2 className="font-heading text-2xl font-bold text-black uppercase tracking-wide leading-snug mb-6">
