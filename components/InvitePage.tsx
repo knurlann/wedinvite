@@ -292,7 +292,7 @@ export default function InvitePage() {
 
       {/* ═══ RSVP ═══ */}
       <section className="bg-white pt-[32px] pb-[27px] text-center">
-        <motion.div {...fadeUp()} className="flex justify-center"><Image src="/img/ornament.svg" alt="" width={69} height={34} /></motion.div>
+        {/* <motion.div {...fadeUp()} className="flex justify-center"><Image src="/img/ornament.svg" alt="" width={69} height={34} /></motion.div> */}
         <motion.p {...fadeUp(0.1)} className="mt-[28px] text-[38px] leading-[60px] text-[#826547]" style={{ ...kaz, fontWeight: 900 }}>Сауалнама</motion.p>
         <motion.p {...fadeUp(0.18)} className="mt-[20px] text-[15px] leading-[25px] text-black" style={{ ...kaz, fontWeight: 200 }}>
           тойға қатысуыңызды<br />растауыңызды сұраймыз:
