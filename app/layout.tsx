@@ -25,8 +25,8 @@ const greatVibes = Great_Vibes({
 });
 
 export const metadata: Metadata = {
-  title: "Нұрлан & Тоқжан | Той шақыруы",
-  description: "Нұрлан мен Тоқжанның үйлену тойына арналған онлайн шақыру",
+  title: "Тоқжан | Қыз ұзату тойына арналған шақыру",
+  description: "Тоқжанның қыз ұзату тойына арналған шақыру",
 };
 
 export const viewport: Viewport = {
