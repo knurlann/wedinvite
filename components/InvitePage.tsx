@@ -4,7 +4,7 @@ import { useEffect, useState, useRef, useCallback, type FormEvent } from "react"
 import { motion } from "framer-motion";
 import Image from "next/image";
 import {
-  GROOM, BRIDE, PARENTS_FATHER, PARENTS_MOTHER,
+  BRIDE, PARENTS_FATHER, PARENTS_MOTHER,
   EVENT_DATE, EVENT_DATE_DISPLAY, EVENT_TIME,
   VENUE_NAME, VENUE_CITY, VENUE_MAP_URL, RSVP_OPTIONS,
 } from "@/lib/constants";
@@ -120,8 +120,10 @@ export default function InvitePage() {
       <div className="fixed inset-0 z-[999999] flex flex-col items-center justify-center bg-[#110b02] text-white" style={kaz}>
         <div className="absolute inset-0" style={{ backgroundImage: "url('/img/hero-bg.png')", backgroundPosition: "center", backgroundSize: "cover", opacity: 0.35 }} />
         <div className="relative z-10 flex flex-col items-center text-center px-6">
-          <p className="text-[12px] uppercase tracking-[3px] leading-[20px]" style={{ fontWeight: 200 }}>ТОЙҒА ШАҚЫРУ</p>
-          <p className="mt-[12px] text-[42px] leading-[58px]" style={{ fontWeight: 900 }}>{GROOM} & {BRIDE}</p>
+          <p className="text-[12px] uppercase tracking-[3px] leading-[20px]" style={{ fontWeight: 200 }}>Ұзату тойына ШАҚЫРУ</p>
+          <br />
+          <p className="mt-[12px] text-[42px] leading-[58px]" style={{ fontWeight: 900 }}>{BRIDE}</p>
+          <br />
           <motion.button
             type="button"
             onClick={handleOpen}
@@ -154,8 +156,8 @@ export default function InvitePage() {
 
         <div className="absolute inset-x-0 top-0 h-[35%] pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)' }} />
         <div className="absolute inset-x-0 top-[70px] flex flex-col items-center text-center text-white" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.6)' }}>
-          <p className="text-[13px] uppercase leading-[20px] tracking-[2px]" style={{ ...kaz, fontWeight: 200 }}>ТОЙҒА ШАҚЫРУ</p>
-          <p className="mt-0 text-[38px] leading-[58px]" style={{ ...kaz, fontWeight: 900 }}>{GROOM} & {BRIDE}</p>
+          <p className="text-[13px] uppercase leading-[20px] tracking-[2px]" style={{ ...kaz, fontWeight: 200 }}>Ұзату тойына ШАҚЫРУ</p>
+          <p className="mt-0 text-[38px] leading-[58px]" style={{ ...kaz, fontWeight: 900 }}>{BRIDE}</p>
           <p className="mt-[12px] text-[10px] uppercase leading-[16px] tracking-[1.5px]" style={{ ...kaz, fontWeight: 200 }}>{heroDateText}</p>
           {/* <div className="relative h-[66px] w-[65px]" style={{ marginTop: '70px' }}><Image src="/img/logo.svg" alt="" fill className="object-contain" /></div> */}
         </div>
@@ -209,7 +211,7 @@ export default function InvitePage() {
         </motion.p>
 
         <motion.p {...fadeUp(0.48)} className="text-[38px] leading-[58px] text-[#aa915d]" style={{ ...kaz, fontWeight: 900, marginBottom: '30px' }}>
-        Тимур- Гаухар
+        Тимур - Гаухар
         </motion.p>
       </section>
 

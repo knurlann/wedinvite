@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { GROOM, BRIDE, EVENT_DATE, EVENT_DATE_DISPLAY } from "@/lib/constants";
+import { BRIDE, EVENT_DATE, EVENT_DATE_DISPLAY } from "@/lib/constants";
 
 interface TimeLeft {
   days: number;
@@ -46,7 +46,7 @@ export default function Hero() {
         className="text-center pt-8"
       >
         <h1 className="font-script text-[3.2rem] leading-none text-white">
-          {GROOM} & {BRIDE}
+          {BRIDE}
         </h1>
         <p className="mt-3 font-heading text-xs tracking-[0.2em] text-white/60">
           {EVENT_DATE_DISPLAY}
@@ -60,7 +60,7 @@ export default function Hero() {
         className="text-center my-8"
       >
         <p className="font-script text-[2.8rem] leading-tight text-white">
-          {GROOM}
+        
         </p>
         <p className="font-heading text-sm tracking-[0.3em] text-white/50 my-2">
           мен

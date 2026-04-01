@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import {
-  GROOM,
   BRIDE,
   PARENTS_FATHER,
   PARENTS_MOTHER,
@@ -35,7 +34,7 @@ export default function Invitation() {
         </h2>
 
         <p className="font-script text-4xl text-black my-4">
-          {GROOM} & {BRIDE}
+          {BRIDE}
         </p>
       </motion.div>
 
