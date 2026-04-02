@@ -11,7 +11,7 @@
  * 5. Copy the Web App URL and paste it in lib/constants.ts as GOOGLE_SCRIPT_URL
  */
 
-const SHEET_ID = "1aqO0jmXmVUO3vzptnyGDbdLv-H-9Myc9BxbsgxlCTyc";
+const SHEET_ID = "16kmuUmuGsQcg5-nNDo1xMqK_6akpH5Q8S7nOn2wm0xY";
 const SHEET_NAME = "RSVP";
 
 function doPost(e) {
