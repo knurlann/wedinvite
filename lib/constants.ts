@@ -14,7 +14,7 @@ export const VENUE_MAP_URL =
   "https://2gis.kz/kosshy/search/family%20hall/firm/70000001095135870/71.36118%2C50.987194?m=71.443112%2C51.129961%2F10.76";
 
 export const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxMZmLRA0Exq8mQQCgbZpnzJJFYJKq2mjlJpuUX41XZUrYpea7AX04fGcZio5q6HeWT/exec";
+  "https://script.google.com/macros/s/AKfycbxDN2YDVGGj5YJxm6MAQ-M6pvtwgp_EgRh8MxE9GBhMfnJBkiQm7w_aa1wt7BS4X4Yr/exec";
 
 export const RSVP_OPTIONS = [
   { value: "coming", label: "Иә, келемін" },
